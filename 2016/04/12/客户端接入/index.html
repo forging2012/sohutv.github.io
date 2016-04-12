@@ -80,30 +80,18 @@
 
 
 
-<meta name="description" content="一、客户端接入流程图&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CacheCloud服务不是客户端的代理，只是通过Http的形式获取到应用的信息(Redis各种类型实例的基本信息)，客户端仍然直接调用Redis服务，这点无需担心。
-
-
-二、接入方法
-1. REST API(1) 接口地址123456789101112http://ip:port/cache">
+<meta name="description" content="一、客户端接入流程图&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CacheCloud服务不是客户端的代理，只是通过Http的形式获取到应用的信息(Redis各种类型实例的基本信息)，客户端仍然直接调用Redis服务，这点无需担心。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="客户端接入文档">
 <meta property="og:url" content="http://yoursite.com/2016/04/12/客户端接入/index.html">
 <meta property="og:site_name" content="CacheCloud">
-<meta property="og:description" content="一、客户端接入流程图&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CacheCloud服务不是客户端的代理，只是通过Http的形式获取到应用的信息(Redis各种类型实例的基本信息)，客户端仍然直接调用Redis服务，这点无需担心。
-
-
-二、接入方法
-1. REST API(1) 接口地址123456789101112http://ip:port/cache">
+<meta property="og:description" content="一、客户端接入流程图&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CacheCloud服务不是客户端的代理，只是通过Http的形式获取到应用的信息(Redis各种类型实例的基本信息)，客户端仍然直接调用Redis服务，这点无需担心。">
 <meta property="og:image" content="http://i2.itc.cn/20160125/3084_42daa94f_47ba_9bba_5633_11837cf5d223_1.png">
 <meta property="og:image" content="http://i3.itc.cn/20160126/3084_f47d45ab_d5bb_ddc2_8ffb_637582e1d44f_1.jpg">
-<meta property="og:updated_time" content="2016-04-12T02:45:56.058Z">
+<meta property="og:updated_time" content="2016-04-12T03:45:40.908Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="客户端接入文档">
-<meta name="twitter:description" content="一、客户端接入流程图&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CacheCloud服务不是客户端的代理，只是通过Http的形式获取到应用的信息(Redis各种类型实例的基本信息)，客户端仍然直接调用Redis服务，这点无需担心。
-
-
-二、接入方法
-1. REST API(1) 接口地址123456789101112http://ip:port/cache">
+<meta name="twitter:description" content="一、客户端接入流程图&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CacheCloud服务不是客户端的代理，只是通过Http的形式获取到应用的信息(Redis各种类型实例的基本信息)，客户端仍然直接调用Redis服务，这点无需担心。">
 <meta name="twitter:image" content="http://i2.itc.cn/20160125/3084_42daa94f_47ba_9bba_5633_11837cf5d223_1.png">
 
 
@@ -314,6 +302,7 @@
         <p><a name="cc1"></a></p>
 <h2 id="一、客户端接入流程图"><a href="#一、客户端接入流程图" class="headerlink" title="一、客户端接入流程图"></a>一、客户端接入流程图</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CacheCloud服务不是客户端的代理，只是通过Http的形式获取到应用的信息(Redis各种类型实例的基本信息)，客户端仍然直接调用Redis服务，这点无需担心。</p>
 <p><img src="http://i2.itc.cn/20160125/3084_42daa94f_47ba_9bba_5633_11837cf5d223_1.png"></p>
+<a id="more"></a>
 <p><a name="cc2"></a></p>
 <h2 id="二、接入方法"><a href="#二、接入方法" class="headerlink" title="二、接入方法"></a>二、接入方法</h2><p><a name="cc2-1"></a></p>
 <h3 id="1-REST-API"><a href="#1-REST-API" class="headerlink" title="1. REST API"></a>1. REST API</h3><h4 id="1-接口地址"><a href="#1-接口地址" class="headerlink" title="(1) 接口地址"></a>(1) 接口地址</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">http:<span class="comment">//ip:port/cache/client/redis/$&#123;appType&#125;/&#123;appId&#125;.json?clientVersion=1.0-SNAPSHOT</span></span><br><span class="line"></span><br><span class="line">appType=cluster|sentinel|standalone    </span><br><span class="line"></span><br><span class="line">appId是应用id</span><br><span class="line"></span><br><span class="line">Cachecloud项目中，clientVersion中版本是必须参数，CacheCloud会根据\src\main\resources\client.properties来决定当前用户客户端是否是较好的，这里甚至可以做强制更新。</span><br><span class="line">client.properties</span><br><span class="line">redis_good_versions = <span class="number">1.0</span>-SNAPSHOT</span><br><span class="line">warn_versions = <span class="number">0.1</span></span><br><span class="line">error_versions = <span class="number">0.0</span></span><br></pre></td></tr></table></figure>
@@ -350,10 +339,6 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/04/12/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
             
           </div>
 
