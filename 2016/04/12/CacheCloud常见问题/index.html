@@ -80,55 +80,30 @@
 
 
 
-<meta name="description" content="资源
-源码：https://github.com/sohutv/cachecloud
-下载：https://github.com/sohutv/cachecloud
-视频教程：http://my.tv.sohu.com/pl/9100280/index.shtml
-QQ群：534429768
+<meta name="description" content="1.界面出现乱码
+现象:
 
-文档
-wiki首页
-用户功能
-运维功能
-服务器端接入文档
-客户端端接入文档
-设计文档
-常见概念和问题">
+解决：修改online.properties或者local.properties中的cachecloud.db.url(前提是数据库是utf-8)
+1cachecloud.db.url = jdbc:mysql://127.0.0.1:3306/cache-cloud?useUnicode=true&amp;amp;amp;characterEncoding=UTF-8">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CacheCloud-资源归档">
-<meta property="og:url" content="http://yoursite.com/2016/04/12/CacheCloud文档归档/index.html">
+<meta property="og:title" content="CacheCloud-功能升级和Bug修复日志">
+<meta property="og:url" content="http://yoursite.com/2016/04/12/CacheCloud常见问题/index.html">
 <meta property="og:site_name" content="CacheCloud">
-<meta property="og:description" content="资源
-源码：https://github.com/sohutv/cachecloud
-下载：https://github.com/sohutv/cachecloud
-视频教程：http://my.tv.sohu.com/pl/9100280/index.shtml
-QQ群：534429768
+<meta property="og:description" content="1.界面出现乱码
+现象:
 
-文档
-wiki首页
-用户功能
-运维功能
-服务器端接入文档
-客户端端接入文档
-设计文档
-常见概念和问题">
-<meta property="og:updated_time" content="2016-04-12T04:34:44.515Z">
+解决：修改online.properties或者local.properties中的cachecloud.db.url(前提是数据库是utf-8)
+1cachecloud.db.url = jdbc:mysql://127.0.0.1:3306/cache-cloud?useUnicode=true&amp;amp;amp;characterEncoding=UTF-8">
+<meta property="og:image" content="http://i0.itc.cn/20160412/3084_23e17f60_ea97_ca09_fd59_e356bdc8ab99_1.png">
+<meta property="og:updated_time" content="2016-04-12T06:05:51.686Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CacheCloud-资源归档">
-<meta name="twitter:description" content="资源
-源码：https://github.com/sohutv/cachecloud
-下载：https://github.com/sohutv/cachecloud
-视频教程：http://my.tv.sohu.com/pl/9100280/index.shtml
-QQ群：534429768
+<meta name="twitter:title" content="CacheCloud-功能升级和Bug修复日志">
+<meta name="twitter:description" content="1.界面出现乱码
+现象:
 
-文档
-wiki首页
-用户功能
-运维功能
-服务器端接入文档
-客户端端接入文档
-设计文档
-常见概念和问题">
+解决：修改online.properties或者local.properties中的cachecloud.db.url(前提是数据库是utf-8)
+1cachecloud.db.url = jdbc:mysql://127.0.0.1:3306/cache-cloud?useUnicode=true&amp;amp;amp;characterEncoding=UTF-8">
+<meta name="twitter:image" content="http://i0.itc.cn/20160412/3084_23e17f60_ea97_ca09_fd59_e356bdc8ab99_1.png">
 
 
 
@@ -146,7 +121,7 @@ wiki首页
   };
 </script>
 
-  <title> CacheCloud-资源归档 | CacheCloud </title>
+  <title> CacheCloud-功能升级和Bug修复日志 | CacheCloud </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -266,7 +241,7 @@ wiki首页
             
             
               
-                CacheCloud-资源归档
+                CacheCloud-功能升级和Bug修复日志
               
             
           </h1>
@@ -278,7 +253,7 @@ wiki首页
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-04-12T12:30:49+08:00" content="2016-04-12">
+            <time itemprop="dateCreated" datetime="2016-04-12T13:44:12+08:00" content="2016-04-12">
               2016-04-12
             </time>
           </span>
@@ -325,21 +300,29 @@ wiki首页
       
 
       
-        <h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><ul>
-<li>源码：<a href="https://github.com/sohutv/cachecloud" target="_blank" rel="external">https://github.com/sohutv/cachecloud</a></li>
-<li>下载：<a href="https://github.com/sohutv/cachecloud" target="_blank" rel="external">https://github.com/sohutv/cachecloud</a></li>
-<li>视频教程：<a href="http://my.tv.sohu.com/pl/9100280/index.shtml" target="_blank" rel="external">http://my.tv.sohu.com/pl/9100280/index.shtml</a></li>
-<li>QQ群：534429768</li>
+        <h4 id="1-界面出现乱码"><a href="#1-界面出现乱码" class="headerlink" title="1.界面出现乱码"></a>1.界面出现乱码</h4><ul>
+<li><p>现象:<br><img src="http://i0.itc.cn/20160412/3084_23e17f60_ea97_ca09_fd59_e356bdc8ab99_1.png"></p>
+</li>
+<li><p>解决：<br>修改online.properties或者local.properties中的cachecloud.db.url(前提是数据库是utf-8)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cachecloud.db.url = jdbc:mysql://127.0.0.1:3306/cache-cloud?useUnicode=<span class="literal">true</span>&amp;amp;characterEncoding=UTF-8</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><ul>
-<li><a href="https://github.com/sohutv/cachecloud/wiki" target="_blank" rel="external">wiki首页</a></li>
-<li><a href="https://github.com/sohutv/cachecloud/wiki/1.%E7%94%A8%E6%88%B7%E5%8A%9F%E8%83%BD" target="_blank" rel="external">用户功能</a></li>
-<li><a href="https://github.com/sohutv/cachecloud/wiki/2.%E8%BF%90%E7%BB%B4%E5%8A%9F%E8%83%BD" target="_blank" rel="external">运维功能</a></li>
-<li><a href="https://github.com/sohutv/cachecloud/wiki/3.%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3" target="_blank" rel="external">服务器端接入文档</a></li>
-<li><a href="https://github.com/sohutv/cachecloud/wiki/4.%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3" target="_blank" rel="external">客户端端接入文档</a></li>
-<li><a href="https://github.com/sohutv/cachecloud/wiki/5.%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3" target="_blank" rel="external">设计文档</a></li>
-<li><a href="https://github.com/sohutv/cachecloud/wiki/6.%E5%B8%B8%E8%A7%81%E6%A6%82%E5%BF%B5%E5%92%8C%E9%97%AE%E9%A2%98" target="_blank" rel="external">常见概念和问题</a></li>
+<a id="more"></a>
+<h4 id="2-初始化脚本cachecloud-init-sh运行失败"><a href="#2-初始化脚本cachecloud-init-sh运行失败" class="headerlink" title="2.初始化脚本cachecloud-init.sh运行失败"></a>2.初始化脚本cachecloud-init.sh运行失败</h4><ul>
+<li><p>现象:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#sh cachecloud-init.sh cachecloud</span></span><br><span class="line">:  <span class="built_in">command</span> not found line 2:</span><br><span class="line">:  <span class="built_in">command</span> not found line 11:</span><br><span class="line">: invalid option nameine 12: <span class="built_in">set</span>: nounset</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决：<br>  cachecloud-init.sh在windows上编辑过就会出现上面的错误，请使用vim直接编辑</p>
+</li>
 </ul>
+<h4 id="3-用户密码在哪"><a href="#3-用户密码在哪" class="headerlink" title="3.用户密码在哪"></a>3.用户密码在哪</h4><p>答：CacheCloud没有保存密码，而是希望将登录逻辑扩展到贵公司。</p>
+<ul>
+<li><p>具体扩展可以参考:<br><a href="https://github.com/sohutv/cachecloud/wiki/3.%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3#cc5" target="_blank" rel="external">https://github.com/sohutv/cachecloud/wiki/3.%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3#cc5</a></p>
+</li>
+<li><p>用户管理也可以参考视频：<br><a href="http://my.tv.sohu.com/pl/9100280/83250734.shtml" target="_blank" rel="external">http://my.tv.sohu.com/pl/9100280/83250734.shtml</a></p>
+</li>
+</ul>
+<p>………………….<strong>待续</strong>……………………..</p>
 
       
     </div>
@@ -363,17 +346,13 @@ wiki首页
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/12/bug修复日志/" rel="next" title="CacheCloud-功能升级和Bug修复日志">
-                <i class="fa fa-chevron-left"></i> CacheCloud-功能升级和Bug修复日志
+              <a href="/2016/04/12/CacheCloud文档归档/" rel="next" title="CacheCloud-资源归档">
+                <i class="fa fa-chevron-left"></i> CacheCloud-资源归档
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/12/CacheCloud常见问题/" rel="prev" title="CacheCloud-功能升级和Bug修复日志">
-                CacheCloud-功能升级和Bug修复日志 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -480,7 +459,7 @@ wiki首页
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#资源"><span class="nav-number">1.</span> <span class="nav-text">资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档"><span class="nav-number">2.</span> <span class="nav-text">文档</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-界面出现乱码"><span class="nav-number">1.</span> <span class="nav-text">1.界面出现乱码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-初始化脚本cachecloud-init-sh运行失败"><span class="nav-number">2.</span> <span class="nav-text">2.初始化脚本cachecloud-init.sh运行失败</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-用户密码在哪"><span class="nav-number">3.</span> <span class="nav-text">3.用户密码在哪</span></a></li></ol></div>
             
           </div>
         </section>
