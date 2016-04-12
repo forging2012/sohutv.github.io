@@ -166,17 +166,7 @@
             
               <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
             
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            Categories
+            Startseite
           </a>
         </li>
       
@@ -186,7 +176,7 @@
             
               <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -239,8 +229,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/12/设计文档/" itemprop="url">
-                  CacheCloud-设计文档
+                <a class="post-title-link" href="/2016/04/12/bug修复日志/" itemprop="url">
+                  CacheCloud-功能升级和Bug修复日志
                 </a>
               
             
@@ -252,8 +242,8 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-04-12T11:41:51+08:00" content="2016-04-12">
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-04-12T11:50:33+08:00" content="2016-04-12">
               2016-04-12
             </time>
           </span>
@@ -264,7 +254,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">in</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/cachecloud/" itemprop="url" rel="index">
@@ -301,245 +291,24 @@
 
       
         
-          <p><a name="cc1"/></p>
-<h2 id="一、CacheCloud是做什么的"><a href="#一、CacheCloud是做什么的" class="headerlink" title="一、CacheCloud是做什么的"></a>一、CacheCloud是做什么的</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CacheCloud提供一个Redis云管理平台：实现多种类型(<strong>Redis Standalone</strong>、<strong>Redis Sentinel</strong>、<strong>Redis Cluster</strong>)自动部署、解决Redis实例碎片化现象、提供完善统计、监控、运维功能、减少开发人员的运维成本和误操作，提高机器的利用率，提供灵活的伸缩性，提供方便的接入客户端。</p>
-<p><img src="http://i3.itc.cn/20160125/3084_5393fb5d_7350_f249_9e37_c0d06d00b908_1.png"></p>
+          <h3 id="2016-03-18：添加机器后不能立刻出现在机器列表中-fixed-详情"><a href="#2016-03-18：添加机器后不能立刻出现在机器列表中-fixed-详情" class="headerlink" title="2016-03-18：添加机器后不能立刻出现在机器列表中(fixed,详情)"></a>2016-03-18：添加机器后不能立刻出现在机器列表中(fixed,<a href="https://github.com/sohutv/cachecloud/commit/bf6b6f0e4b0ea912aa05badbbd976c999620055f">详情</a>)</h3><ul>
+<li>表现：添加机器后不能立刻出现在机器列表中。</li>
+<li>原因：最早的版本必须等到quartz收集完机器信息才显示。</li>
+<li>解决：添加机器信息后，立即显示在列表中，不过机器信息显示收集中。</li>
+</ul>
+<h3 id="2016-03-19：sentinel必须写死在配置中-fixed-详情"><a href="#2016-03-19：sentinel必须写死在配置中-fixed-详情" class="headerlink" title="2016-03-19：sentinel必须写死在配置中(fixed,详情)"></a>2016-03-19：sentinel必须写死在配置中(fixed,<a href="https://github.com/sohutv/cachecloud/commit/e596d4326fac911f4172158de1ae03abb14f9830">详情</a>)</h3><ul>
+<li>表现：sentinel列表必须写死在配置中。</li>
+<li>原因：历史原因造成，cachecloud在内部用了固定的三台机器，为了偷懒。</li>
+<li>解决：sentinel可以灵活配置。<br><img src="http://i3.itc.cn/20160412/3084_96890c2b_97e5_0f8f_db51_7e9c1f8a592c_1.png"/></li>
+</ul>
+<h3 id="2016-03-21：保存机器收集信息报错-fixed-详情"><a href="#2016-03-21：保存机器收集信息报错-fixed-详情" class="headerlink" title="2016-03-21：保存机器收集信息报错(fixed,详情)"></a>2016-03-21：保存机器收集信息报错(fixed,<a href="https://github.com/sohutv/cachecloud/commit/d6e1ffb1ebd9bd1df9b55535da9fec7000167559">详情</a>)</h3><ol>
+<li>表现：保存机器收集信息，提示和virtual相关的报错</li>
+<li>原因：mysql5.7中virtual是关键字</li>
+<li>解决：在mybatis的mapper中兼容</li>
+</ol>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/12/设计文档/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/12/用户功能/" itemprop="url">
-                  用户功能
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-04-12T10:46:58+08:00" content="2016-04-12">
-              2016-04-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/cachecloud/" itemprop="url" rel="index">
-                    <span itemprop="name">cachecloud</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a name="cc1"/></p>
-<h2 id="一、总体使用流程"><a href="#一、总体使用流程" class="headerlink" title="一、总体使用流程"></a>一、总体使用流程</h2><p><img src="http://i2.itc.cn/20160125/3084_4c138c76_3eb6_e2ce_9e06_a048d87f6baf_1.png"></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/12/用户功能/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/12/客户端接入/" itemprop="url">
-                  客户端接入文档
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-04-12T10:17:02+08:00" content="2016-04-12">
-              2016-04-12
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/cachecloud/" itemprop="url" rel="index">
-                    <span itemprop="name">cachecloud</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a name="cc1"/></p>
-<h2 id="一、客户端接入流程图"><a href="#一、客户端接入流程图" class="headerlink" title="一、客户端接入流程图"></a>一、客户端接入流程图</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CacheCloud服务不是客户端的代理，只是通过Http的形式获取到应用的信息(Redis各种类型实例的基本信息)，客户端仍然直接调用Redis服务，这点无需担心。</p>
-<p><img src="http://i2.itc.cn/20160125/3084_42daa94f_47ba_9bba_5633_11837cf5d223_1.png"/></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/12/客户端接入/#more" rel="contents">
-              Read more &raquo;
+            <a class="btn" href="/2016/04/12/bug修复日志/#more" rel="contents">
+              Weiterlesen &raquo;
             </a>
           </div>
         
@@ -609,17 +378,17 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">categories</span>
-              </a>
+                <span class="site-state-item-name">Kategorien</span>
+              
             </div>
           
 
@@ -664,7 +433,7 @@
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="http://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
