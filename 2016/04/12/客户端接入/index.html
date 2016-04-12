@@ -1,0 +1,600 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一、客户端接入流程图&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CacheCloud服务不是客户端的代理，只是通过Http的形式获取到应用的信息(Redis各种类型实例的基本信息)，客户端仍然直接调用Redis服务，这点无需担心。
+
+
+二、接入方法
+1. REST API(1) 接口地址123456789101112http://ip:port/cache">
+<meta property="og:type" content="article">
+<meta property="og:title" content="客户端接入文档">
+<meta property="og:url" content="http://yoursite.com/2016/04/12/客户端接入/index.html">
+<meta property="og:site_name" content="CacheCloud">
+<meta property="og:description" content="一、客户端接入流程图&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CacheCloud服务不是客户端的代理，只是通过Http的形式获取到应用的信息(Redis各种类型实例的基本信息)，客户端仍然直接调用Redis服务，这点无需担心。
+
+
+二、接入方法
+1. REST API(1) 接口地址123456789101112http://ip:port/cache">
+<meta property="og:image" content="http://i2.itc.cn/20160125/3084_42daa94f_47ba_9bba_5633_11837cf5d223_1.png">
+<meta property="og:image" content="http://i3.itc.cn/20160126/3084_f47d45ab_d5bb_ddc2_8ffb_637582e1d44f_1.jpg">
+<meta property="og:updated_time" content="2016-04-12T02:45:56.058Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="客户端接入文档">
+<meta name="twitter:description" content="一、客户端接入流程图&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CacheCloud服务不是客户端的代理，只是通过Http的形式获取到应用的信息(Redis各种类型实例的基本信息)，客户端仍然直接调用Redis服务，这点无需担心。
+
+
+二、接入方法
+1. REST API(1) 接口地址123456789101112http://ip:port/cache">
+<meta name="twitter:image" content="http://i2.itc.cn/20160125/3084_42daa94f_47ba_9bba_5633_11837cf5d223_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> 客户端接入文档 | CacheCloud </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">CacheCloud</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            Accueil
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                客户端接入文档
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posté le</span>
+            <time itemprop="dateCreated" datetime="2016-04-12T10:17:02+08:00" content="2016-04-12">
+              2016-04-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/cachecloud/" itemprop="url" rel="index">
+                    <span itemprop="name">cachecloud</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a name="cc1"></a></p>
+<h2 id="一、客户端接入流程图"><a href="#一、客户端接入流程图" class="headerlink" title="一、客户端接入流程图"></a>一、客户端接入流程图</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CacheCloud服务不是客户端的代理，只是通过Http的形式获取到应用的信息(Redis各种类型实例的基本信息)，客户端仍然直接调用Redis服务，这点无需担心。</p>
+<p><img src="http://i2.itc.cn/20160125/3084_42daa94f_47ba_9bba_5633_11837cf5d223_1.png"></p>
+<p><a name="cc2"></a></p>
+<h2 id="二、接入方法"><a href="#二、接入方法" class="headerlink" title="二、接入方法"></a>二、接入方法</h2><p><a name="cc2-1"></a></p>
+<h3 id="1-REST-API"><a href="#1-REST-API" class="headerlink" title="1. REST API"></a>1. REST API</h3><h4 id="1-接口地址"><a href="#1-接口地址" class="headerlink" title="(1) 接口地址"></a>(1) 接口地址</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">http:<span class="comment">//ip:port/cache/client/redis/$&#123;appType&#125;/&#123;appId&#125;.json?clientVersion=1.0-SNAPSHOT</span></span><br><span class="line"></span><br><span class="line">appType=cluster|sentinel|standalone    </span><br><span class="line"></span><br><span class="line">appId是应用id</span><br><span class="line"></span><br><span class="line">Cachecloud项目中，clientVersion中版本是必须参数，CacheCloud会根据\src\main\resources\client.properties来决定当前用户客户端是否是较好的，这里甚至可以做强制更新。</span><br><span class="line">client.properties</span><br><span class="line">redis_good_versions = <span class="number">1.0</span>-SNAPSHOT</span><br><span class="line">warn_versions = <span class="number">0.1</span></span><br><span class="line">error_versions = <span class="number">0.0</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-REST接口结果"><a href="#2-REST接口结果" class="headerlink" title="(2) REST接口结果"></a>(2) REST接口结果</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  message: <span class="string">"client is up to date, Cheers!"</span>,</span><br><span class="line">  shardNum: <span class="number">10</span>,</span><br><span class="line">  appId: <span class="number">10192</span>,</span><br><span class="line">  status: <span class="number">1</span>,</span><br><span class="line">  shardInfo: <span class="string">"10.10.xx.xx:6390,10.10.xx.xx:6382 10.10.xx.xx:6387,10.10.xx.xx:6379 10.10.xx.xx:6387,10.10.xx.xx:7382 10.10.xx.xx:6380,10.10.xx.xx:6392"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a name="cc2-2"></a></p>
+<h3 id="2-Java客户端"><a href="#2-Java客户端" class="headerlink" title="2. Java客户端"></a>2. Java客户端</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cachecloud为Java开发者提供了Redis的客户端，基本实现原理也是调用上面的REST接口，解析，初始化对应Jedis代码(JedisPool, JedisSentinelPool, JedisCluster)</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果需要使用改客户端，请注意如下：</p>
+<pre><code class="Java">修改\src\main\resources\cacheCloudClient.properties中的domain_url为你的域名，这个域名是作为获取REST接口用。
+</code></pre>
+<p><a name="cc3"></a></p>
+<h2 id="三、扩展"><a href="#三、扩展" class="headerlink" title="三、扩展"></a>三、扩展</h2><h3 id="1-redis客户端耗时的统计："><a href="#1-redis客户端耗时的统计：" class="headerlink" title="1. redis客户端耗时的统计："></a>1. redis客户端耗时的统计：</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相比于redis服务端的耗时统计，客户端和实例、应用多维度的耗时统计更能方便定位问题。</p>
+<h3 id="2-redis中value大小区间的统计："><a href="#2-redis中value大小区间的统计：" class="headerlink" title="2. redis中value大小区间的统计："></a>2. redis中value大小区间的统计：</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帮助确定系统中是否存在不合理的kv值。</p>
+<h3 id="3-redis客户端的异常统计："><a href="#3-redis客户端的异常统计：" class="headerlink" title="3. redis客户端的异常统计："></a>3. redis客户端的异常统计：</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帮助用户快速发现redis异常（例如超时，poolconfig分配不合理等等）。</p>
+<p><img src="http://i3.itc.cn/20160126/3084_f47d45ab_d5bb_ddc2_8ffb_637582e1d44f_1.jpg"></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/12/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/12/用户功能/" rel="prev" title="用户功能">
+                用户功能 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table Des Matières
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Ensemble
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="sohutv" />
+          <p class="site-author-name" itemprop="name">sohutv</p>
+          <p class="site-description motion-element" itemprop="description">CacheCloud��Redis����</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">articles</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、客户端接入流程图"><span class="nav-number">1.</span> <span class="nav-text">一、客户端接入流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、接入方法"><span class="nav-number">2.</span> <span class="nav-text">二、接入方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-REST-API"><span class="nav-number">2.1.</span> <span class="nav-text">1. REST API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-接口地址"><span class="nav-number">2.1.1.</span> <span class="nav-text">(1) 接口地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-REST接口结果"><span class="nav-number">2.1.2.</span> <span class="nav-text">(2) REST接口结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Java客户端"><span class="nav-number">2.2.</span> <span class="nav-text">2. Java客户端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、扩展"><span class="nav-number">3.</span> <span class="nav-text">三、扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-redis客户端耗时的统计："><span class="nav-number">3.1.</span> <span class="nav-text">1. redis客户端耗时的统计：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-redis中value大小区间的统计："><span class="nav-number">3.2.</span> <span class="nav-text">2. redis中value大小区间的统计：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-redis客户端的异常统计："><span class="nav-number">3.3.</span> <span class="nav-text">3. redis客户端的异常统计：</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sohutv</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Thème -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
