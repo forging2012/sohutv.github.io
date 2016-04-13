@@ -95,7 +95,7 @@
 解决：修改online.properties或者local.properties中的cachecloud.db.url(前提是数据库是utf-8)
 1cachecloud.db.url = jdbc:mysql://127.0.0.1:3306/cache-cloud?useUnicode=true&amp;amp;amp;characterEncoding=UTF-8">
 <meta property="og:image" content="http://i0.itc.cn/20160412/3084_23e17f60_ea97_ca09_fd59_e356bdc8ab99_1.png">
-<meta property="og:updated_time" content="2016-04-12T06:12:18.664Z">
+<meta property="og:updated_time" content="2016-04-13T13:20:48.524Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CacheCloud-部署使用常见问题(待续)">
 <meta name="twitter:description" content="1.界面出现乱码
@@ -329,6 +329,12 @@
 <li><p>用户管理也可以参考视频：<br><a href="http://my.tv.sohu.com/pl/9100280/83250734.shtml" target="_blank" rel="external">http://my.tv.sohu.com/pl/9100280/83250734.shtml</a></p>
 </li>
 </ul>
+<h4 id="4-CacheCloud与Codis"><a href="#4-CacheCloud与Codis" class="headerlink" title="4.CacheCloud与Codis"></a>4.CacheCloud与Codis</h4><p>答：CacheCloud与Codis并没有可比性：</p>
+<ul>
+<li>CacheCloud是官方Redis(standalone、sentinel、cluster)的上层工具，是用于运维和管理Redis的。</li>
+<li>Codis是豌豆荚公司基于proxy方式对于Redis官方版本进行改造的分布式实现方式，当然其中也包含了管理Codis的dashboard<br>所以两者并不具有可比性。</li>
+</ul>
+<h4 id="5-CacheCloud是客户端到Redis的代理吗？"><a href="#5-CacheCloud是客户端到Redis的代理吗？" class="headerlink" title="5.CacheCloud是客户端到Redis的代理吗？"></a>5.CacheCloud是客户端到Redis的代理吗？</h4><p>答：不是。具体参考<a href="https://github.com/sohutv/cachecloud/issues/1" target="_blank" rel="external">issue1</a></p>
 <p>………………….<strong>待续</strong>……………………..</p>
 
       
@@ -426,7 +432,7 @@
                src="http://i3.itc.cn/20160316/3084_9587fc69_5909_9fac_89e3_c420eda9eafa_1.png"
                alt="sohutv" />
           <p class="site-author-name" itemprop="name">sohutv</p>
-          <p class="site-description motion-element" itemprop="description">CacheCloud��Redis����</p>
+          <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
@@ -455,7 +461,7 @@
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/your-user-name" target="_blank" title="github">
+                <a href="https://github.com/sohutv/cachecloud" target="_blank" title="github">
                   
                     <i class="fa fa-globe"></i>
                   
@@ -481,7 +487,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-界面出现乱码"><span class="nav-number">1.</span> <span class="nav-text">1.界面出现乱码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-初始化脚本cachecloud-init-sh运行失败"><span class="nav-number">2.</span> <span class="nav-text">2.初始化脚本cachecloud-init.sh运行失败</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-用户密码在哪"><span class="nav-number">3.</span> <span class="nav-text">3.用户密码在哪</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-界面出现乱码"><span class="nav-number">1.</span> <span class="nav-text">1.界面出现乱码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-初始化脚本cachecloud-init-sh运行失败"><span class="nav-number">2.</span> <span class="nav-text">2.初始化脚本cachecloud-init.sh运行失败</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-用户密码在哪"><span class="nav-number">3.</span> <span class="nav-text">3.用户密码在哪</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-CacheCloud与Codis"><span class="nav-number">4.</span> <span class="nav-text">4.CacheCloud与Codis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-CacheCloud是客户端到Redis的代理吗？"><span class="nav-number">5.</span> <span class="nav-text">5.CacheCloud是客户端到Redis的代理吗？</span></a></li></ol></div>
             
           </div>
         </section>
