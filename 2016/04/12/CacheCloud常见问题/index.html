@@ -96,7 +96,9 @@
 1cachecloud.db.url = jdbc:mysql://127.0.0.1:3306/cache-cloud?useUnicode=true&amp;amp;amp;characterEncoding=UTF-8">
 <meta property="og:image" content="http://i0.itc.cn/20160412/3084_23e17f60_ea97_ca09_fd59_e356bdc8ab99_1.png">
 <meta property="og:image" content="https://camo.githubusercontent.com/d8e531bccb1897c2aa7f6287f702853407d4ac84/687474703a2f2f69322e6974632e636e2f32303136303132352f333038345f34326461613934665f343762615f396262615f353633335f3131383337636635643232335f312e706e67">
-<meta property="og:updated_time" content="2016-04-13T14:13:07.347Z">
+<meta property="og:image" content="http://i0.itc.cn/20160413/3084_b295cfdf_da7f_5090_d414_a5f3b05a51e4_1.gif">
+<meta property="og:image" content="http://i0.itc.cn/20160413/3084_c186922a_4cc8_ce10_0da7_8741d9ae6d60_1.gif">
+<meta property="og:updated_time" content="2016-04-13T14:55:06.865Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CacheCloud-部署使用常见问题(待续)">
 <meta name="twitter:description" content="1.界面出现乱码
@@ -347,9 +349,13 @@
 <h4 id="7-”之前”的Redis如何托管给CacheCloud管理："><a href="#7-”之前”的Redis如何托管给CacheCloud管理：" class="headerlink" title="7.”之前”的Redis如何托管给CacheCloud管理："></a>7.”之前”的Redis如何托管给CacheCloud管理：</h4><p>答：其实这个问题有点复杂，具体可以沿着两个思路做：</p>
 <h5 id="1-新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。"><a href="#1-新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。" class="headerlink" title="1. 新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。"></a>1. 新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。</h5><ul>
 <li>数据实时性不高：如果对数据实时性要求不高，可以直接生成一个RDB或者scan之前的数据到CacheCloud的应用中。(用哪种方式取决于Redis类型，例如”之前”是主从结构，新的应用是Redis-Cluster那么必须用scan)</li>
-<li>数据实时性高：在上一步骤迁移的同时，还要在客户端双写数据。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有个前提是，迁移过程中和迁移后，都要添加CacheCloud的客户端实现，也就是通过appid的形式，[具体参考](https:<span class="comment">//github.com/sohutv/cachecloud/wiki/4.%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3)</span></span><br></pre></td></tr></table></figure>
-</li>
 </ul>
+<p><img src="http://i0.itc.cn/20160413/3084_b295cfdf_da7f_5090_d414_a5f3b05a51e4_1.gif"></p>
+<ul>
+<li>数据实时性高：在上一步骤迁移的同时，还要在客户端双写数据。</li>
+</ul>
+<p><img src="http://i0.itc.cn/20160413/3084_c186922a_4cc8_ce10_0da7_8741d9ae6d60_1.gif"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">有个前提是，迁移过程中和迁移后，都要添加CacheCloud的客户端实现，也就是通过appid的形式，[具体参考](https:<span class="comment">//github.com/sohutv/cachecloud/wiki/4.%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3)</span></span><br></pre></td></tr></table></figure>
 <h5 id="2-将”之前”的Redis直接接入到CacheCloud。"><a href="#2-将”之前”的Redis直接接入到CacheCloud。" class="headerlink" title="2. 将”之前”的Redis直接接入到CacheCloud。"></a>2. 将”之前”的Redis直接接入到CacheCloud。</h5><p>具体实现：</p>
 <ul>
 <li>添加应用信息、实例信息到cachecloud的app_desc和instance_info两个表(具体可以参考其他CacheCloud开启的应用)</li>
