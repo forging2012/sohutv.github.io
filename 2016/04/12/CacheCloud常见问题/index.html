@@ -98,7 +98,10 @@
 <meta property="og:image" content="https://camo.githubusercontent.com/d8e531bccb1897c2aa7f6287f702853407d4ac84/687474703a2f2f69322e6974632e636e2f32303136303132352f333038345f34326461613934665f343762615f396262615f353633335f3131383337636635643232335f312e706e67">
 <meta property="og:image" content="http://i0.itc.cn/20160413/3084_b295cfdf_da7f_5090_d414_a5f3b05a51e4_1.gif">
 <meta property="og:image" content="http://i0.itc.cn/20160413/3084_c186922a_4cc8_ce10_0da7_8741d9ae6d60_1.gif">
-<meta property="og:updated_time" content="2016-04-14T01:47:01.436Z">
+<meta property="og:image" content="http://i3.itc.cn/20160127/3084_ff4fb247_713b_52ca_9a4e_b71288972158_1.jpg">
+<meta property="og:image" content="http://i0.itc.cn/20160126/3084_b1b002b9_0350_e8a9_4f06_ea263d3e070a_1.png">
+<meta property="og:image" content="http://i3.itc.cn/20160125/3084_c8e7ce83_c32f_003e_4d76_5628b614e3eb_1.jpg">
+<meta property="og:updated_time" content="2016-04-14T01:53:04.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CacheCloud-部署使用常见问题(待续)">
 <meta name="twitter:description" content="1.界面出现乱码
@@ -347,7 +350,7 @@
 <li>其他方式根据企业的要求自定义实现，主要的实现实现都在SshUtil类中。</li>
 </ul>
 <h4 id="7-”之前”的Redis如何托管给CacheCloud管理："><a href="#7-”之前”的Redis如何托管给CacheCloud管理：" class="headerlink" title="7.”之前”的Redis如何托管给CacheCloud管理："></a>7.”之前”的Redis如何托管给CacheCloud管理：</h4><p>答：其实这个问题有点复杂，具体可以沿着两个思路做：</p>
-<h5 id="1-新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。"><a href="#1-新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。" class="headerlink" title="1. 新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。"></a>1. 新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。</h5><ul>
+<h5 id="1-新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。"><a href="#1-新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。" class="headerlink" title="(1). 新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。"></a>(1). 新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。</h5><ul>
 <li>数据实时性不高：如果对数据实时性要求不高，可以直接生成一个RDB或者scan之前的数据到CacheCloud的应用中。(用哪种方式取决于Redis类型，例如”之前”是主从结构，新的应用是Redis-Cluster那么必须用scan)</li>
 </ul>
 <p><img src="http://i0.itc.cn/20160413/3084_b295cfdf_da7f_5090_d414_a5f3b05a51e4_1.gif"></p>
@@ -357,13 +360,31 @@
 <p><img src="http://i0.itc.cn/20160413/3084_c186922a_4cc8_ce10_0da7_8741d9ae6d60_1.gif"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">迁移过程中和迁移后，都要添加CacheCloud的客户端实现，也就是通过appid的形式，具体参考：https:<span class="comment">//github.com/sohutv/cachecloud/wiki/4.%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%AB%AF%E6%8E%A5%E5%85%A5%E6%96%87%E6%A1%A3</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scan是Redis <span class="number">2.8</span>才可以支持。</span><br></pre></td></tr></table></figure>
-<h5 id="2-将”之前”的Redis直接接入到CacheCloud。"><a href="#2-将”之前”的Redis直接接入到CacheCloud。" class="headerlink" title="2. 将”之前”的Redis直接接入到CacheCloud。"></a>2. 将”之前”的Redis直接接入到CacheCloud。</h5><p>具体实现：</p>
+<h5 id="2-将”之前”的Redis直接接入到CacheCloud。"><a href="#2-将”之前”的Redis直接接入到CacheCloud。" class="headerlink" title="(2). 将”之前”的Redis直接接入到CacheCloud。"></a>(2). 将”之前”的Redis直接接入到CacheCloud。</h5><p>具体实现：</p>
 <ul>
 <li>添加应用信息、实例信息到cachecloud的app_desc和instance_info两个表(具体可以参考其他CacheCloud开启的应用)</li>
 <li>修改代码中关于cachecloud的目录，例如cachecloud代码中默认使用的是/opt/cachecloud作为根目录，以为data,conf等作为数据和配置目录</li>
 <li>修改ssh权限，具体参考问题6</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">总之，在Cachecloud开发新的版本能够更加方便接入<span class="string">"之前"</span>Redis之前，暂时只有这两种方法，当然也欢迎各位大神给出更好的建议和意见。</span><br></pre></td></tr></table></figure>
+<h4 id="8-实例下线和心跳停止？"><a href="#8-实例下线和心跳停止？" class="headerlink" title="8.实例下线和心跳停止？"></a>8.实例下线和心跳停止？</h4><ul>
+<li>下线：管理员人工处理，真的下线了。</li>
+<li>心跳停止：监控认为有可能下线，但是由于网络等原因，可能并没有下线，所以需要管理员处理</li>
+</ul>
+<h4 id="9-配置修改是对实例下所有实例进行修改吗？"><a href="#9-配置修改是对实例下所有实例进行修改吗？" class="headerlink" title="9. 配置修改是对实例下所有实例进行修改吗？"></a>9. 配置修改是对实例下所有实例进行修改吗？</h4><p>答：是的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cachecloud中各种类型(Redis-standalone, Redis-sentinel, Redis-cluster)，在开启应用时，使用的我们认为最优的配置。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是，每个用户自己服务类型不同，需求可能会不同，例如对于maxmemory-policy、list-max-ziplist-entries、list-max-ziplist-value等配置就会有所不同，如果有需要修改配置，用户可以自行提交配置修改。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;修改方法如下：</p>
+<ul>
+<li><p>(1) 进入应用页面的拓扑结构选项卡，点击ID进入实例页面<br><img src="http://i3.itc.cn/20160127/3084_ff4fb247_713b_52ca_9a4e_b71288972158_1.jpg"></p>
+</li>
+<li><p>(2) 进入配置查询选项卡<br><img src="http://i0.itc.cn/20160126/3084_b1b002b9_0350_e8a9_4f06_ea263d3e070a_1.png"></p>
+</li>
+<li><p>(3) 点击申请修改配置，填写相应字段和值<br><img src="http://i3.itc.cn/20160125/3084_c8e7ce83_c32f_003e_4d76_5628b614e3eb_1.jpg"></p>
+</li>
+<li><p>(4) 后台管理员接收到申请邮件，进行处理，处理完成后，用户将收到相应处理邮件</p>
+</li>
+</ul>
+<h6 id="如果想修改一个实例配置怎么办？"><a href="#如果想修改一个实例配置怎么办？" class="headerlink" title="如果想修改一个实例配置怎么办？"></a><strong>如果想修改一个实例配置怎么办？</strong></h6><p>现在需要手动到机器上修改，后期会修复这个问题，因为我们认为一般来说集群的配置尽可能的统一。</p>
 <p>………………….<strong>待续</strong>……………………..</p>
 
       
@@ -516,7 +537,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-界面出现乱码"><span class="nav-number">1.</span> <span class="nav-text">1.界面出现乱码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-初始化脚本cachecloud-init-sh运行失败"><span class="nav-number">2.</span> <span class="nav-text">2.初始化脚本cachecloud-init.sh运行失败</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-用户密码在哪"><span class="nav-number">3.</span> <span class="nav-text">3.用户密码在哪</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-CacheCloud与Codis"><span class="nav-number">4.</span> <span class="nav-text">4.CacheCloud与Codis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-CacheCloud是客户端到Redis的代理吗？"><span class="nav-number">5.</span> <span class="nav-text">5.CacheCloud是客户端到Redis的代理吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-CacheCloud如何与服务器”打交道”"><span class="nav-number">6.</span> <span class="nav-text">6.CacheCloud如何与服务器”打交道”</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1实现方式"><span class="nav-number">6.1.</span> <span class="nav-text">6.1实现方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-ssh安全吗？有其他方式吗？"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 ssh安全吗？有其他方式吗？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-”之前”的Redis如何托管给CacheCloud管理："><span class="nav-number">7.</span> <span class="nav-text">7.”之前”的Redis如何托管给CacheCloud管理：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。"><span class="nav-number">7.1.</span> <span class="nav-text">1. 新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-将”之前”的Redis直接接入到CacheCloud。"><span class="nav-number">7.2.</span> <span class="nav-text">2. 将”之前”的Redis直接接入到CacheCloud。</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-界面出现乱码"><span class="nav-number">1.</span> <span class="nav-text">1.界面出现乱码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-初始化脚本cachecloud-init-sh运行失败"><span class="nav-number">2.</span> <span class="nav-text">2.初始化脚本cachecloud-init.sh运行失败</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-用户密码在哪"><span class="nav-number">3.</span> <span class="nav-text">3.用户密码在哪</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-CacheCloud与Codis"><span class="nav-number">4.</span> <span class="nav-text">4.CacheCloud与Codis</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-CacheCloud是客户端到Redis的代理吗？"><span class="nav-number">5.</span> <span class="nav-text">5.CacheCloud是客户端到Redis的代理吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-CacheCloud如何与服务器”打交道”"><span class="nav-number">6.</span> <span class="nav-text">6.CacheCloud如何与服务器”打交道”</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#6-1实现方式"><span class="nav-number">6.1.</span> <span class="nav-text">6.1实现方式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-2-ssh安全吗？有其他方式吗？"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 ssh安全吗？有其他方式吗？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-”之前”的Redis如何托管给CacheCloud管理："><span class="nav-number">7.</span> <span class="nav-text">7.”之前”的Redis如何托管给CacheCloud管理：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。"><span class="nav-number">7.1.</span> <span class="nav-text">(1). 新建CacheCloud应用，将”之前”的Redis数据迁移到该应用中。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-将”之前”的Redis直接接入到CacheCloud。"><span class="nav-number">7.2.</span> <span class="nav-text">(2). 将”之前”的Redis直接接入到CacheCloud。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-实例下线和心跳停止？"><span class="nav-number">8.</span> <span class="nav-text">8.实例下线和心跳停止？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-配置修改是对实例下所有实例进行修改吗？"><span class="nav-number">9.</span> <span class="nav-text">9. 配置修改是对实例下所有实例进行修改吗？</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#如果想修改一个实例配置怎么办？"><span class="nav-number">9.0.1.</span> <span class="nav-text">如果想修改一个实例配置怎么办？</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
