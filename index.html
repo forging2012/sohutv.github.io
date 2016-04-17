@@ -298,61 +298,15 @@
 
       
         
-          
-            <h4 id="1-说明"><a href="#1-说明" class="headerlink" title="1.说明:"></a>1.说明:</h4><p>CacheCloud作为Redis私有云运维平台，实现多种类型(Redis Standalone、Redis Sentinel、Redis Cluster)自动部署，对于Redis部署十分的方便，但是开源后一直有朋友问，如何将已经存在Redis接入到CacheCloud，经过讨论，这个确实CacheCloud存在的一个问题(因为在我们的项目组CacheCloud是先开发出来，期间用的Redis)，为此开发了接入界面，支持一键将已有的Redis接入到Cachecloud，有关操作请看第2节，有关注意事项请看3节</p>
+          <h4 id="1-说明"><a href="#1-说明" class="headerlink" title="1.说明:"></a>1.说明:</h4><p>CacheCloud作为Redis私有云运维平台，实现多种类型(Redis Standalone、Redis Sentinel、Redis Cluster)自动部署，对于Redis部署十分的方便，但是开源后一直有朋友问，如何将已经存在Redis接入到CacheCloud，经过讨论，这个确实CacheCloud存在的一个问题(因为在我们的项目组CacheCloud是先开发出来，期间用的Redis)，为此开发了接入界面，支持一键将已有的Redis接入到Cachecloud，有关操作请看第2节，有关注意事项请看3节</p>
 <h4 id="2-操作说明"><a href="#2-操作说明" class="headerlink" title="2.操作说明:"></a>2.操作说明:</h4><h5 id="2-1-功能界面"><a href="#2-1-功能界面" class="headerlink" title="2.1. 功能界面"></a>2.1. 功能界面</h5><pre><code>申请：此功能只有管理员可以使用。
 </code></pre><p>管理员登录后，可以点击右侧下拉菜单中的导入应用(下图1)就可以进入导入应用界面(下图2)</p>
-<p><img src="http://i1.itc.cn/20160417/3084_6249e353_9407_951d_a5c5_8128c49fc06b_1.png"><br>(图1)</p>
-<p><img src="http://i1.itc.cn/20160417/3084_f2fed374_c77a_af9a_cf8d_0a9455ff52cb_1.png"><br><img src="http://i0.itc.cn/20160417/3084_cbbaf293_1b51_b971_94bc_88e929f9d9b7_1.png"><br>(图2)</p>
-<h5 id="2-2-具体选项说明"><a href="#2-2-具体选项说明" class="headerlink" title="2.2. 具体选项说明"></a>2.2. 具体选项说明</h5><ul>
-<li>应用名称：中英文都可以，但是不要与现存的cachecloud应用名重复，否则会提示重复。</li>
-<li>应用描述：不为空即可</li>
-<li><strong>存储种类</strong>: 导入的Redis类型</li>
-<li>项目负责人: 中文名</li>
-<li><strong>测试</strong>：该应用是否为测试</li>
-<li><strong>报警阀值</strong>: 正整数，超过100就不报警了</li>
-<li><p><strong>实例详情</strong>: 导入Redis实例详情</p>
-<ol>
-<li>说明如图:<br><img src="http://i3.itc.cn/20160417/3084_920d8162_f351_9a1f_22ee_27bdedf66219_1.png"></li>
-<li><p>单点: ip:端口:maxmemory大小(要以M为单位)，例如127.0.0.1:6379:1024</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10.10</span>.1.1:<span class="number">6379</span>:<span class="number">1024</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>sentinel: </p>
-<pre><code>数据节点=&gt;ip:端口:maxmeory大小(要以M为单位)，例如127.0.0.1:6379:1024(不分主从)&lt;br/&gt;
-sentinel节点=&gt;ip:端口:masterName，例如127.0.0.1:26379:myMasterName
-</code></pre><p>例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10.10</span>.1.1:<span class="number">8000</span>:<span class="number">1024</span></span><br><span class="line"><span class="number">10.10</span>.1.2:<span class="number">8001</span>:<span class="number">1024</span></span><br><span class="line"><span class="number">10.10</span>.1.4:<span class="number">26379</span>:myMasterName</span><br><span class="line"><span class="number">10.10</span>.1.5:<span class="number">26380</span>:myMasterName</span><br><span class="line"><span class="number">10.10</span>.1.6:<span class="number">26381</span>:myMasterName</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>cluster: 每行都是数据节点，不分主从，例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10.10</span>.1.1:<span class="number">6379</span>:<span class="number">1024</span></span><br><span class="line"><span class="number">10.10</span>.1.2:<span class="number">6380</span>:<span class="number">1024</span></span><br><span class="line"><span class="number">10.10</span>.1.3:<span class="number">6381</span>:<span class="number">1024</span></span><br><span class="line"><span class="number">10.10</span>.1.4:<span class="number">6382</span>:<span class="number">1024</span></span><br><span class="line"><span class="number">10.10</span>.1.5:<span class="number">6383</span>:<span class="number">1024</span></span><br><span class="line"><span class="number">10.10</span>.1.6:<span class="number">6384</span>:<span class="number">1024</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ul>
-<h5 id="2-3-操作说明"><a href="#2-3-操作说明" class="headerlink" title="2.3. 操作说明"></a>2.3. 操作说明</h5><h6 id="2-3-1-格式验证"><a href="#2-3-1-格式验证" class="headerlink" title="2.3.1. 格式验证"></a>2.3.1. 格式验证</h6><p>填写完相关字段后，点击检查按钮，如果检查无误，那么会提示检查成功，此时开始导入按钮就变成可点击。如果提示错误，那么说明格式有问题，那么导入按钮不可以点击，常见错误如下：</p>
-<ul>
-<li>重复的应用名：说明你填写的应用名已经在cachecloud中存在。</li>
-<li>关于实例详细的格式错误：格式有问题，请参考2.2。</li>
-<li>机器ip不存在：说明实例详情中，有些机器信息并没有添加到cachecloud。</li>
-<li>节点不存活：说明有些ip:port对应的Redis ping不通。</li>
-<li>ip:port已经在instance_info表中存在，说明实例已经在cachecloud中。</li>
-<li>sentinel相关错误: 填写的masterName为空或者与真实masterName不符。</li>
-</ul>
-<h6 id="2-3-2-开始导入"><a href="#2-3-2-开始导入" class="headerlink" title="2.3.2. 开始导入"></a>2.3.2. 开始导入</h6><p>格式验证成功后，点击开始导入功能，就可以将填写的Redis实例导入到cachecloud中，包括应用信息，实例信息，应用和实例的各种统计信息的收集就会生效，报表就可以展示出来，并且相关报警也会自动启动。</p>
-<h4 id="3-注意事项"><a href="#3-注意事项" class="headerlink" title="3.注意事项:"></a>3.注意事项:</h4><ul>
-<li>已存在的Redis的配置中必须有maxmemory，否则会展示不出来应用内存的进度条。</li>
-<li><p>已存在的Redis所在机器必须添加userName和password,这个要和local.properties和online.properties的用户名和密码一致。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uesradd userName</span><br><span class="line">passwd userName</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>已存在的Redis所在机器不要用cachecloud-init.sh初始化，否则会和已知环境冲突。</p>
-</li>
-<li>不要在已存在的Redis所在机器使用如下功能：<br>(1)添加slave<br>(2)修复slot<br>(3)开启应用<br>(4)水平扩容添加节点<br>(5)启动节点<br>  因为上述功能都会添加新的节点，所以不用使用cachecloud在这些机器上执行开启节点的相关操作。</li>
-</ul>
-<h4 id="4-相关视频"><a href="#4-相关视频" class="headerlink" title="4.相关视频"></a>4.相关视频</h4><pre><code>详见百度网盘：http://pan.baidu.com/s/1c2mET5e
-</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">6.1</span>.已存在Redis接入Cachecloud-说明</span><br><span class="line"><span class="number">6.2</span>.已存在Redis接入Cachecloud-问题说明</span><br><span class="line"><span class="number">6.3</span>.已存在Redis接入Cachecloud-使用说明</span><br><span class="line"><span class="number">6.4</span>.已经存在Redis接入Cachecloud-standalone</span><br><span class="line"><span class="number">6.5</span>.已经存在Redis接入Cachecloud-sentinel</span><br><span class="line"><span class="number">6.6</span>.已经存在Redis接入Cachecloud-cluster</span><br><span class="line"><span class="number">6.7</span>.已存在-相关注意和后续</span><br></pre></td></tr></table></figure>
-<h4 id="5-迁移后续"><a href="#5-迁移后续" class="headerlink" title="5. 迁移后续"></a>5. 迁移后续</h4><p>建议迁移后续，可以利用redis的相关failover特性，把之前的Redis节点全都替换成cachecloud节点。</p>
-
-          
+<p><img src="http://i1.itc.cn/20160417/3084_6249e353_9407_951d_a5c5_8128c49fc06b_1.png"/><br>(图1)</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/17/已存在Redis接入CacheCloud/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -469,8 +423,7 @@ sentinel节点=&gt;ip:端口:masterName，例如127.0.0.1:26379:myMasterName
 
       
         
-          
-            <h2 id="一、开发计划"><a href="#一、开发计划" class="headerlink" title="一、开发计划"></a>一、开发计划</h2><h4 id="1-功能性优化"><a href="#1-功能性优化" class="headerlink" title="1.功能性优化"></a>1.功能性优化</h4><table>
+          <h2 id="一、开发计划"><a href="#一、开发计划" class="headerlink" title="一、开发计划"></a>一、开发计划</h2><h4 id="1-功能性优化"><a href="#1-功能性优化" class="headerlink" title="1.功能性优化"></a>1.功能性优化</h4><table>
 <thead>
 <tr>
 <th style="text-align:center">序号</th>
@@ -482,7 +435,7 @@ sentinel节点=&gt;ip:端口:masterName，例如127.0.0.1:26379:myMasterName
 <tbody>
 <tr>
 <td style="text-align:center">1</td>
-<td style="text-align:center">水平扩容优化: <br>(1)流程优化 <br> (2)效率优化</td>
+<td style="text-align:center">水平扩容优化: <br/>(1)流程优化 <br/> (2)效率优化</td>
 <td style="text-align:center">4星</td>
 <td style="text-align:center">4星</td>
 </tr>
@@ -518,7 +471,7 @@ sentinel节点=&gt;ip:端口:masterName，例如127.0.0.1:26379:myMasterName
 </tr>
 <tr>
 <td style="text-align:center">7</td>
-<td style="text-align:center">数据迁移功能:<br>(1)迁移工具<br>(2)老应用直接接入</td>
+<td style="text-align:center">数据迁移功能:<br/>(1)迁移工具<br/>(2)老应用直接接入</td>
 <td style="text-align:center">5星</td>
 <td style="text-align:center">5星</td>
 </tr>
@@ -542,52 +495,11 @@ sentinel节点=&gt;ip:端口:masterName，例如127.0.0.1:26379:myMasterName
 </tr>
 </tbody>
 </table>
-<h4 id="2-项目优化"><a href="#2-项目优化" class="headerlink" title="2.项目优化"></a>2.项目优化</h4><table>
-<thead>
-<tr>
-<th style="text-align:center">序号</th>
-<th style="text-align:center">功能说明</th>
-<th style="text-align:center">重要性</th>
-<th style="text-align:center">复杂度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">cachecloud自身高可用：<br>现在依赖于nginx，未来会实现自身高可用</td>
-<td style="text-align:center">3星</td>
-<td style="text-align:center">3星</td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">cachecloud数据高可用：<br>: 现在应用和实例的关系是存放在数据库中，如果数据库挂掉会比较麻烦</td>
-<td style="text-align:center">4星</td>
-<td style="text-align:center">3星</td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td style="text-align:center">整合cachecloud公司和开源版本最终为一个版本：<br>目前基本一致，但是目标是直接使用开源版本</td>
-<td style="text-align:center">5星</td>
-<td style="text-align:center">3星</td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td style="text-align:center">客户端高可用：<br>现在客户端依赖于cachecloud的高可用(http形式)</td>
-<td style="text-align:center">4星</td>
-<td style="text-align:center">4星</td>
-</tr>
-</tbody>
-</table>
-<h2 id="二、招募"><a href="#二、招募" class="headerlink" title="二、招募"></a>二、招募</h2><h4 id="１-要求"><a href="#１-要求" class="headerlink" title="１.要求　"></a>１.要求　</h4><p>上面是CacheCloud的开发计划，大家看到了功能和优化点还是比较多的，Cachecloud作为开源项目希望招募更多的开发者，具体要求如下：</p>
-<ul>
-<li>熟悉Redis的开发或运维。</li>
-<li>搭建过CacheCloud，了解CacheCloud的结构、原理、代码。</li>
-<li>能为CacheCloud提出意见和建议进行改进。</li>
-<li>按期完成指定开发任务。</li>
-</ul>
-<h4 id="2-联系方式"><a href="#2-联系方式" class="headerlink" title="2.联系方式"></a>2.联系方式</h4><p>发送个人基本情况到easybits@outlook.com，或者直接加入QQ群(534429768)联系管理员。</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/04/17/v2计划/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
