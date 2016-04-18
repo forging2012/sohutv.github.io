@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://i1.itc.cn/20160417/3084_f2fed374_c77a_af9a_cf8d_0a9455ff52cb_1.png">
 <meta property="og:image" content="http://i0.itc.cn/20160417/3084_cbbaf293_1b51_b971_94bc_88e929f9d9b7_1.png">
 <meta property="og:image" content="http://i3.itc.cn/20160417/3084_920d8162_f351_9a1f_22ee_27bdedf66219_1.png">
-<meta property="og:updated_time" content="2016-04-18T12:21:06.966Z">
+<meta property="og:updated_time" content="2016-04-18T12:36:09.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="已存在Redis接入CacheCloud-测试版">
 <meta name="twitter:description" content="这个导入只做了下面几件事儿：1. 验证输入内容。
@@ -356,8 +356,9 @@ sentinel节点=&gt;ip:端口:masterName，例如127.0.0.1:26379:myMasterName
 <li><p>已存在的Redis所在机器必须添加userName和password,这个要和local.properties和online.properties的用户名和密码一致。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd userName</span><br><span class="line">passwd userName</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>已存在的Redis所在机器不要用cachecloud-init.sh初始化，否则会和已知环境冲突。</p>
+<li><p>已存在的Redis不要设置密码，否则节点信息会收集失败，但是不影响应用与实例的元信息导入。</p>
 </li>
+<li>已存在的Redis所在机器不要用cachecloud-init.sh初始化，否则会和已知环境冲突。</li>
 <li>不要在已存在的Redis所在机器使用如下功能：<br>(1)添加slave<br>(2)修复slot<br>(3)开启应用<br>(4)水平扩容添加节点<br>(5)启动节点<br>  因为上述功能都会添加新的节点，所以不用使用cachecloud在这些机器上执行开启节点的相关操作。</li>
 </ul>
 <h4 id="4-相关视频"><a href="#4-相关视频" class="headerlink" title="4.相关视频"></a>4.相关视频</h4><pre><code>详见百度网盘：http://pan.baidu.com/s/1c2mET5e
