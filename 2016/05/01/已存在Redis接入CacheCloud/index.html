@@ -86,7 +86,7 @@
 所以对现有的Redis不会有什么性能影响，而且可以使用CacheCloud绝大部分功能:监控、报警、报表、元信息管理查询、客户端等等(有关不能使用的功能请见第3节)1.说明:CacheCloud作为Redis私有云运维平台，实现多种类型(Redi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="已存在Redis接入CacheCloud">
-<meta property="og:url" content="http://yoursite.com/2016/04/17/已存在Redis接入CacheCloud/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/05/01/已存在Redis接入CacheCloud/index.html">
 <meta property="og:site_name" content="CacheCloud">
 <meta property="og:description" content="这个导入只做了下面几件事儿：1. 验证输入内容。
 2. 保存应用信息、实例信息，应用与实例关系信息。
@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://i1.itc.cn/20160417/3084_f2fed374_c77a_af9a_cf8d_0a9455ff52cb_1.png">
 <meta property="og:image" content="http://i0.itc.cn/20160417/3084_cbbaf293_1b51_b971_94bc_88e929f9d9b7_1.png">
 <meta property="og:image" content="http://i3.itc.cn/20160417/3084_920d8162_f351_9a1f_22ee_27bdedf66219_1.png">
-<meta property="og:updated_time" content="2016-04-26T02:15:02.847Z">
+<meta property="og:updated_time" content="2016-05-03T02:27:51.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="已存在Redis接入CacheCloud">
 <meta name="twitter:description" content="这个导入只做了下面几件事儿：1. 验证输入内容。
@@ -263,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-17T22:06:50+08:00" content="2016-04-17">
-              2016-04-17
+            <time itemprop="dateCreated" datetime="2016-05-01T21:44:56+08:00" content="2016-05-01">
+              2016-05-01
             </time>
           </span>
 
@@ -293,8 +293,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/17/已存在Redis接入CacheCloud/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/17/已存在Redis接入CacheCloud/" itemprop="commentsCount"></span>
+                <a href="/2016/05/01/已存在Redis接入CacheCloud/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/01/已存在Redis接入CacheCloud/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -362,6 +362,7 @@ sentinel节点=&gt;ip:端口:masterName，例如127.0.0.1:26379:myMasterName
 </ul>
 <h6 id="2-3-2-开始导入"><a href="#2-3-2-开始导入" class="headerlink" title="2.3.2. 开始导入"></a>2.3.2. 开始导入</h6><p>格式验证成功后，点击开始导入功能，就可以将填写的Redis实例导入到cachecloud中，包括应用信息，实例信息，应用和实例的各种统计信息的收集就会生效，报表就可以展示出来，并且相关报警也会自动启动。</p>
 <h4 id="3-注意事项"><a href="#3-注意事项" class="headerlink" title="3.注意事项:"></a>3.注意事项:</h4><ul>
+<li>已存在的Redis不能设置密码。</li>
 <li>已存在的Redis的配置中必须有maxmemory，否则会展示不出来应用内存的进度条。</li>
 <li><p>已存在的Redis所在机器必须添加userName和password,这个要和local.properties和online.properties的用户名和密码一致。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd userName</span><br><span class="line">passwd userName</span><br></pre></td></tr></table></figure>
@@ -397,13 +398,17 @@ sentinel节点=&gt;ip:端口:masterName，例如127.0.0.1:26379:myMasterName
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/17/v2计划/" rel="next" title="CacheCloud-v2开发计划和招募">
-                <i class="fa fa-chevron-left"></i> CacheCloud-v2开发计划和招募
+              <a href="/2016/05/01/bug修复日志/" rel="next" title="CacheCloud-功能升级和Bug修复日志">
+                <i class="fa fa-chevron-left"></i> CacheCloud-功能升级和Bug修复日志
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/04/2/" rel="prev" title="已存在Redis接入CacheCloud">
+                已存在Redis接入CacheCloud <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -429,8 +434,8 @@ sentinel节点=&gt;ip:端口:masterName，例如127.0.0.1:26379:myMasterName
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/17/已存在Redis接入CacheCloud/"
-           data-title="已存在Redis接入CacheCloud" data-url="http://yoursite.com/2016/04/17/已存在Redis接入CacheCloud/">
+      <div class="ds-thread" data-thread-key="2016/05/01/已存在Redis接入CacheCloud/"
+           data-title="已存在Redis接入CacheCloud" data-url="http://yoursite.com/2016/05/01/已存在Redis接入CacheCloud/">
       </div>
     
   </div>
@@ -475,7 +480,7 @@ sentinel节点=&gt;ip:端口:masterName，例如127.0.0.1:26379:myMasterName
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

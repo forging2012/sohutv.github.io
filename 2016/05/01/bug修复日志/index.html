@@ -90,7 +90,7 @@
 原因：历史原因造成，cach">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CacheCloud-功能升级和Bug修复日志">
-<meta property="og:url" content="http://yoursite.com/2016/04/12/bug修复日志/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/05/01/bug修复日志/index.html">
 <meta property="og:site_name" content="CacheCloud">
 <meta property="og:description" content="2016-03-18：添加机器后不能立刻出现在机器列表中(fixed,详情)
 表现：添加机器后不能立刻出现在机器列表中。
@@ -101,7 +101,11 @@
 表现：sentinel列表必须写死在配置中。
 原因：历史原因造成，cach">
 <meta property="og:image" content="http://i3.itc.cn/20160412/3084_96890c2b_97e5_0f8f_db51_7e9c1f8a592c_1.png">
-<meta property="og:updated_time" content="2016-04-24T09:47:54.625Z">
+<meta property="og:image" content="http://i1.itc.cn/20160504/3084_292b02d8_b5d4_b056_959b_27b8664e8e26_1.png">
+<meta property="og:image" content="http://i1.itc.cn/20160504/3084_5c4a1c3a_a2cb_1106_f855_3aaf189fb777_1.png">
+<meta property="og:image" content="http://i1.itc.cn/20160504/3084_292b02d8_b5d4_b056_959b_27b8664e8e26_1.png">
+<meta property="og:image" content="http://i1.itc.cn/20160504/3084_c96a8c9f_7e85_96e9_fc5d_df78209d97c2_1.png">
+<meta property="og:updated_time" content="2016-05-04T10:37:25.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CacheCloud-功能升级和Bug修复日志">
 <meta name="twitter:description" content="2016-03-18：添加机器后不能立刻出现在机器列表中(fixed,详情)
@@ -272,8 +276,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-12T11:50:33+08:00" content="2016-04-12">
-              2016-04-12
+            <time itemprop="dateCreated" datetime="2016-05-01T21:44:56+08:00" content="2016-05-01">
+              2016-05-01
             </time>
           </span>
 
@@ -302,8 +306,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/12/bug修复日志/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/bug修复日志/" itemprop="commentsCount"></span>
+                <a href="/2016/05/01/bug修复日志/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/01/bug修复日志/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -410,7 +414,23 @@
 <li>问题： 删除机器信息功能，没有关闭掉机器相关的定时任务。</li>
 <li>解决： 代码问题，调换了删除机器信息和定时任务的顺序。</li>
 </ul>
-
+<h4 id="2016-05-04-应用驳回后无法显示驳回状态-fixed-详情"><a href="#2016-05-04-应用驳回后无法显示驳回状态-fixed-详情" class="headerlink" title="2016-05-04: 应用驳回后无法显示驳回状态(fixed,详情)"></a>2016-05-04: 应用驳回后无法显示驳回状态(fixed,<a href="https://github.com/sohutv/cachecloud/commit/27561e40e2d98880adb7466505f1d47f902220e8" target="_blank" rel="external">详情</a>)</h4><ul>
+<li>问题： 应用驳回后无法显示驳回状态</li>
+<li>解决： 添加驳回状态，修改相应页面。</li>
+<li>issue: <a href="https://github.com/sohutv/cachecloud/issues/39" target="_blank" rel="external">https://github.com/sohutv/cachecloud/issues/39</a></li>
+</ul>
+<h4 id="2016-05-04-优化审批流程-fixed-详情"><a href="#2016-05-04-优化审批流程-fixed-详情" class="headerlink" title="2016-05-04: 优化审批流程(fixed,详情)"></a>2016-05-04: 优化审批流程(fixed,<a href="https://github.com/sohutv/cachecloud/commit/89c30cc503bb1f57bfa8fd7ba4e6f24006348033" target="_blank" rel="external">详情</a>)</h4><ul>
+<li>问题： 审批流程稍复杂</li>
+<li>解决：<br>(1) 申请后，列表中只有驳回和审批处理，不再有通过按钮。<br><img src="http://i1.itc.cn/20160504/3084_292b02d8_b5d4_b056_959b_27b8664e8e26_1.png" alt="http://i1.itc.cn/20160504/3084_292b02d8_b5d4_b056_959b_27b8664e8e26_1.png"></li>
+</ul>
+<p>(2.1) 审批处理成功了，只有通过按钮<br><img src="http://i1.itc.cn/20160504/3084_5c4a1c3a_a2cb_1106_f855_3aaf189fb777_1.png" alt="http://i1.itc.cn/20160504/3084_5c4a1c3a_a2cb_1106_f855_3aaf189fb777_1.png"></p>
+<p>(2.2) 审批处理失败了，仍然回到(1)<br><img src="http://i1.itc.cn/20160504/3084_292b02d8_b5d4_b056_959b_27b8664e8e26_1.png" alt="http://i1.itc.cn/20160504/3084_292b02d8_b5d4_b056_959b_27b8664e8e26_1.png"></p>
+<h4 id="2016-05-04-配置修改迁移到应用界面-fixed-详情"><a href="#2016-05-04-配置修改迁移到应用界面-fixed-详情" class="headerlink" title="2016-05-04: 配置修改迁移到应用界面(fixed,详情)"></a>2016-05-04: 配置修改迁移到应用界面(fixed,<a href="https://github.com/sohutv/cachecloud/commit/77a0ce42e719f58552dbc5cb49d11d3c13b1f3f2" target="_blank" rel="external">详情</a>)</h4><ul>
+<li>问题： 之前隐藏在实例中</li>
+<li>解决：<br><img src="http://i1.itc.cn/20160504/3084_c96a8c9f_7e85_96e9_fc5d_df78209d97c2_1.png" alt="http://i1.itc.cn/20160504/3084_c96a8c9f_7e85_96e9_fc5d_df78209d97c2_1.png"></li>
+</ul>
+<pre><code>配置修改申请成功后，会修改应用下所有节点的配置，例如修改appendonly=yes，那么所有节点的appendonly都变为yes
+</code></pre>
       
     </div>
     
@@ -433,12 +453,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/04/17/v2计划/" rel="next" title="CacheCloud-v2开发计划和招募">
+                <i class="fa fa-chevron-left"></i> CacheCloud-v2开发计划和招募
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/12/CacheCloud文档归档/" rel="prev" title="CacheCloud-资源归档">
-                CacheCloud-资源归档 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/01/已存在Redis接入CacheCloud/" rel="prev" title="已存在Redis接入CacheCloud">
+                已存在Redis接入CacheCloud <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -465,8 +489,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/12/bug修复日志/"
-           data-title="CacheCloud-功能升级和Bug修复日志" data-url="http://yoursite.com/2016/04/12/bug修复日志/">
+      <div class="ds-thread" data-thread-key="2016/05/01/bug修复日志/"
+           data-title="CacheCloud-功能升级和Bug修复日志" data-url="http://yoursite.com/2016/05/01/bug修复日志/">
       </div>
     
   </div>
@@ -511,7 +535,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -561,7 +585,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-03-18：添加机器后不能立刻出现在机器列表中-fixed-详情"><span class="nav-number">1.</span> <span class="nav-text">2016-03-18：添加机器后不能立刻出现在机器列表中(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-03-19：sentinel必须写死在配置中-fixed-详情"><span class="nav-number">2.</span> <span class="nav-text">2016-03-19：sentinel必须写死在配置中(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-03-21：保存机器收集信息报错-fixed-详情"><span class="nav-number">3.</span> <span class="nav-text">2016-03-21：保存机器收集信息报错(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-03-28：修复redis-cluster节点都在一台机器时，机器挂掉后，无法显示运维界面-fixed-详情"><span class="nav-number">4.</span> <span class="nav-text">2016-03-28：修复redis cluster节点都在一台机器时，机器挂掉后，无法显示运维界面(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-03-29：修复机器信息统计在centos7-debian等操作系统失效-fixed-详情"><span class="nav-number">5.</span> <span class="nav-text">2016-03-29：修复机器信息统计在centos7 debian等操作系统失效(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-03-31：启动脚本问题。-fixed-详情"><span class="nav-number">6.</span> <span class="nav-text">2016-03-31：启动脚本问题。(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-03-修复机器更新异常。-fixed-详情"><span class="nav-number">7.</span> <span class="nav-text">2016-04-03: 修复机器更新异常。(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-07-修复应用运维界面，运维后页面不刷新-fixed-详情"><span class="nav-number">8.</span> <span class="nav-text">2016-04-07: 修复应用运维界面，运维后页面不刷新 (fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-07-去掉InstanceInfo中的parentId-对应instance-info表-fixed-详情"><span class="nav-number">9.</span> <span class="nav-text">2016-04-07: 去掉InstanceInfo中的parentId(对应instance_info表)(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-07-JedisCluster初始化不需要指定主从关系-fixed-详情"><span class="nav-number">10.</span> <span class="nav-text">2016-04-07: JedisCluster初始化不需要指定主从关系(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-16-已存在Redis接入CacheCloud-fixed-详情"><span class="nav-number">11.</span> <span class="nav-text">2016-04-16: 已存在Redis接入CacheCloud(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-21-admin用户密码可配置-fixed-详情"><span class="nav-number">12.</span> <span class="nav-text">2016-04-21: admin用户密码可配置(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-21-获取机器最大的redis端口时，存在debian操作系统不兼容问题-fixed-详情"><span class="nav-number">13.</span> <span class="nav-text">2016-04-21: 获取机器最大的redis端口时，存在debian操作系统不兼容问题(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-24-修复删除机器不能删除机器相关的定时任务-fixed-详情"><span class="nav-number">14.</span> <span class="nav-text">2016-04-24: 修复删除机器不能删除机器相关的定时任务(fixed,详情)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-03-18：添加机器后不能立刻出现在机器列表中-fixed-详情"><span class="nav-number">1.</span> <span class="nav-text">2016-03-18：添加机器后不能立刻出现在机器列表中(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-03-19：sentinel必须写死在配置中-fixed-详情"><span class="nav-number">2.</span> <span class="nav-text">2016-03-19：sentinel必须写死在配置中(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-03-21：保存机器收集信息报错-fixed-详情"><span class="nav-number">3.</span> <span class="nav-text">2016-03-21：保存机器收集信息报错(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-03-28：修复redis-cluster节点都在一台机器时，机器挂掉后，无法显示运维界面-fixed-详情"><span class="nav-number">4.</span> <span class="nav-text">2016-03-28：修复redis cluster节点都在一台机器时，机器挂掉后，无法显示运维界面(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-03-29：修复机器信息统计在centos7-debian等操作系统失效-fixed-详情"><span class="nav-number">5.</span> <span class="nav-text">2016-03-29：修复机器信息统计在centos7 debian等操作系统失效(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-03-31：启动脚本问题。-fixed-详情"><span class="nav-number">6.</span> <span class="nav-text">2016-03-31：启动脚本问题。(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-03-修复机器更新异常。-fixed-详情"><span class="nav-number">7.</span> <span class="nav-text">2016-04-03: 修复机器更新异常。(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-07-修复应用运维界面，运维后页面不刷新-fixed-详情"><span class="nav-number">8.</span> <span class="nav-text">2016-04-07: 修复应用运维界面，运维后页面不刷新 (fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-07-去掉InstanceInfo中的parentId-对应instance-info表-fixed-详情"><span class="nav-number">9.</span> <span class="nav-text">2016-04-07: 去掉InstanceInfo中的parentId(对应instance_info表)(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-07-JedisCluster初始化不需要指定主从关系-fixed-详情"><span class="nav-number">10.</span> <span class="nav-text">2016-04-07: JedisCluster初始化不需要指定主从关系(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-16-已存在Redis接入CacheCloud-fixed-详情"><span class="nav-number">11.</span> <span class="nav-text">2016-04-16: 已存在Redis接入CacheCloud(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-21-admin用户密码可配置-fixed-详情"><span class="nav-number">12.</span> <span class="nav-text">2016-04-21: admin用户密码可配置(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-21-获取机器最大的redis端口时，存在debian操作系统不兼容问题-fixed-详情"><span class="nav-number">13.</span> <span class="nav-text">2016-04-21: 获取机器最大的redis端口时，存在debian操作系统不兼容问题(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-04-24-修复删除机器不能删除机器相关的定时任务-fixed-详情"><span class="nav-number">14.</span> <span class="nav-text">2016-04-24: 修复删除机器不能删除机器相关的定时任务(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-05-04-应用驳回后无法显示驳回状态-fixed-详情"><span class="nav-number">15.</span> <span class="nav-text">2016-05-04: 应用驳回后无法显示驳回状态(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-05-04-优化审批流程-fixed-详情"><span class="nav-number">16.</span> <span class="nav-text">2016-05-04: 优化审批流程(fixed,详情)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2016-05-04-配置修改迁移到应用界面-fixed-详情"><span class="nav-number">17.</span> <span class="nav-text">2016-05-04: 配置修改迁移到应用界面(fixed,详情)</span></a></li></ol></div>
             
           </div>
         </section>
