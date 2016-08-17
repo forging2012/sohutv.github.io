@@ -80,15 +80,55 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="sohutv">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="1.rocketmq是什么
+高可用，高性能，分布式有序队列
+
+2.使用场景如果业务系统遇到如下词语，可以使用rocketmq
+
+系统解耦
+发布订阅
+分布式队列
+数据延时处理
+分布式事务
+非实时业务削峰
+
+3.物理部署结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rocketmq设计与分析--简介">
+<meta property="og:url" content="http://yoursite.com/2016/08/17/rocketmq设计与分析(1)--简介/index.html">
 <meta property="og:site_name" content="sohutv">
-<meta property="og:description">
+<meta property="og:description" content="1.rocketmq是什么
+高可用，高性能，分布式有序队列
+
+2.使用场景如果业务系统遇到如下词语，可以使用rocketmq
+
+系统解耦
+发布订阅
+分布式队列
+数据延时处理
+分布式事务
+非实时业务削峰
+
+3.物理部署结构">
+<meta property="og:image" content="http://i3.itc.cn/20160817/3084_c83e8dba_5a42_88ae_7e7d_47c1b18ac0df_1.png">
+<meta property="og:image" content="http://i1.itc.cn/20160817/3084_a4ce2adc_3b8f_0a36_99ad_357d828a24b3_1.png">
+<meta property="og:updated_time" content="2016-08-17T02:06:56.566Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sohutv">
-<meta name="twitter:description">
+<meta name="twitter:title" content="rocketmq设计与分析--简介">
+<meta name="twitter:description" content="1.rocketmq是什么
+高可用，高性能，分布式有序队列
+
+2.使用场景如果业务系统遇到如下词语，可以使用rocketmq
+
+系统解耦
+发布订阅
+分布式队列
+数据延时处理
+分布式事务
+非实时业务削峰
+
+3.物理部署结构">
+<meta name="twitter:image" content="http://i3.itc.cn/20160817/3084_c83e8dba_5a42_88ae_7e7d_47c1b18ac0df_1.png">
 
 
 
@@ -106,7 +146,7 @@
   };
 </script>
 
-  <title> sohutv </title>
+  <title> rocketmq设计与分析--简介 | sohutv </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -137,9 +177,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -216,9 +254,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -238,140 +276,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/08/17/openresty - 副本/" itemprop="url">
-                  nginx+lua+kafka实现日志统一收集汇总
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-17T09:52:12+08:00" content="2016-08-17">
-              2016-08-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/openresty/" itemprop="url" rel="index">
-                    <span itemprop="name">openresty</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/17/openresty - 副本/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/17/openresty - 副本/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="一-场景描述"><a href="#一-场景描述" class="headerlink" title="一:场景描述"></a>一:场景描述</h3><p>对于线上大流量服务或者需要上报日志的nginx服务，每天会产生大量的日志，这些日志非常有价值。可用于计数上报、用户行为分析、接口质量、性能监控等需求。但传统nginx记录日志的方式数据会散落在各自nginx上，而且大流量日志本身对磁盘也是一种冲击。</p>
-<p>我们需要把这部分nginx日志统一收集汇总起来,收集过程和结果需要满足如下需求:</p>
-<ul>
-<li>支持不同业务获取数据,如监控业务，数据分析统计业务，推荐业务等。</li>
-<li>数据实时性</li>
-<li>高性能保证</li>
-</ul>
-<h3 id="二-技术方案"><a href="#二-技术方案" class="headerlink" title="二:技术方案"></a>二:技术方案</h3><p>得益于openresty和kafka的高性能，我们可以非常轻量高效的实现当前需求，架构如下:</p>
-<p><img src="http://i2.itc.cn/20160817/3084_7ea9a650_6be9_4a0b_419f_056a01ce9379_1.png" alt=""></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/17/openresty - 副本/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/17/rocketmq设计与分析(1)--简介/" itemprop="url">
-                  rocketmq设计与分析--简介
-                </a>
+                rocketmq设计与分析--简介
               
             
           </h1>
@@ -437,8 +342,7 @@
       
 
       
-        
-          <h3 id="1-rocketmq是什么"><a href="#1-rocketmq是什么" class="headerlink" title="1.rocketmq是什么"></a>1.rocketmq是什么</h3><ul>
+        <h3 id="1-rocketmq是什么"><a href="#1-rocketmq是什么" class="headerlink" title="1.rocketmq是什么"></a>1.rocketmq是什么</h3><ul>
 <li>高可用，高性能，分布式有序队列</li>
 </ul>
 <h3 id="2-使用场景"><a href="#2-使用场景" class="headerlink" title="2.使用场景"></a>2.使用场景</h3><p>如果业务系统遇到如下词语，可以使用rocketmq</p>
@@ -451,20 +355,74 @@
 <li>非实时业务削峰</li>
 </ul>
 <h3 id="3-物理部署结构"><a href="#3-物理部署结构" class="headerlink" title="3.物理部署结构"></a>3.物理部署结构</h3><p><img src="http://i3.itc.cn/20160817/3084_c83e8dba_5a42_88ae_7e7d_47c1b18ac0df_1.png" alt=""></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/17/rocketmq设计与分析(1)--简介/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+<a id="more"></a>
+<h4 id="a-name-server-主要负责存储topic的路由信息"><a href="#a-name-server-主要负责存储topic的路由信息" class="headerlink" title="a. name server 主要负责存储topic的路由信息"></a>a. name server 主要负责存储topic的路由信息</h4><ul>
+<li>节点之间无数据通信</li>
+<li>无状态</li>
+<li>可以集群部署</li>
+</ul>
+<h4 id="b-broker-主要负责消息存储功能和消息消费功能"><a href="#b-broker-主要负责消息存储功能和消息消费功能" class="headerlink" title="b. broker  主要负责消息存储功能和消息消费功能"></a>b. broker  主要负责消息存储功能和消息消费功能</h4><ul>
+<li>分为master与slave，一个master可以有多个slave，slave同步master的数据</li>
+<li>broker的master之间无数据通信</li>
+<li>mater&lt;-&gt;slave可以集群部署</li>
+</ul>
+<h4 id="c-name-server与broker"><a href="#c-name-server与broker" class="headerlink" title="c. name server与broker"></a>c. name server与broker</h4><ul>
+<li>broker定时向所有的nameserver注册</li>
+<li>namer server定时扫描并移除已死的broker</li>
+</ul>
+<h4 id="d-producer-负责发送消息"><a href="#d-producer-负责发送消息" class="headerlink" title="d. producer 负责发送消息"></a>d. producer 负责发送消息</h4><ul>
+<li>producer无状态，可以集群部署</li>
+</ul>
+<h4 id="e-producer与name-server"><a href="#e-producer与name-server" class="headerlink" title="e. producer与name server"></a>e. producer与name server</h4><ul>
+<li>从nameserver集群中的一个查询topic路由信息</li>
+</ul>
+<h4 id="f-producer与broker"><a href="#f-producer与broker" class="headerlink" title="f. producer与broker"></a>f. producer与broker</h4><ul>
+<li>根据路由信息向broker发送消息</li>
+<li>与broker保持心跳</li>
+</ul>
+<p>g. consumer 服务消费消息</p>
+<ul>
+<li>consumer消费方式有两种，集群消费和广播消费。</li>
+<li>集群消费：所有的消费者平均消费一份消息。</li>
+<li>广播消费：每个消费者各自消费同一份消息</li>
+<li>可以集群部署</li>
+</ul>
+<p>h. consumer与namer server</p>
+<ul>
+<li>从nameserver集群中的一个查询topic路由信息</li>
+</ul>
+<p>i. consumer与broker</p>
+<ul>
+<li>根据路由信息向broker拉取消息</li>
+<li>与broker保持心跳</li>
+</ul>
+<h3 id="4-逻辑部署结构"><a href="#4-逻辑部署结构" class="headerlink" title="4. 逻辑部署结构"></a>4. 逻辑部署结构</h3><p><img src="http://i1.itc.cn/20160817/3084_a4ce2adc_3b8f_0a36_99ad_357d828a24b3_1.png" alt=""></p>
+<h4 id="a-producer-group"><a href="#a-producer-group" class="headerlink" title="a. producer group"></a>a. producer group</h4><ul>
+<li>同一类消息的发送者需要设置为同一个producer group</li>
+<li>同一个producer group可以向多个topic发送消息</li>
+<li>同一个producer group对应的producer可以在同一个jvm中，也可以在不同的jvm中，也可以在不同的机器的jvm中</li>
+</ul>
+<h4 id="b-consumer-group"><a href="#b-consumer-group" class="headerlink" title="b. consumer group"></a>b. consumer group</h4><ul>
+<li>同一类消息的消费者需要设置为同一个consumer group</li>
+<li>同一个consumer group只可以消费同一个topic</li>
+<li>同一个consumer group对应的consumer可以在同一个jvm中，也可以在不同的jvm中，也可以在不同的机器的jvm中</li>
+</ul>
+<h3 id="5-使用方式"><a href="#5-使用方式" class="headerlink" title="5.使用方式"></a>5.使用方式</h3><ul>
+<li>参阅官方示例：<a href="https://github.com/alibaba/RocketMQ/tree/master/rocketmq-example" target="_blank" rel="external">https://github.com/alibaba/RocketMQ/tree/master/rocketmq-example</a></li>
+</ul>
+
       
     </div>
     
     <div>
       
+        
+      
     </div>
 
     <div>
+      
+        
       
     </div>
 
@@ -472,142 +430,36 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/08/17/Hystrix 使用与分析/" rel="next" title="Hystrix 使用与分析">
+                <i class="fa fa-chevron-left"></i> Hystrix 使用与分析
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/08/17/Hystrix 使用与分析/" itemprop="url">
-                  Hystrix 使用与分析
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-17T09:20:24+08:00" content="2016-08-17">
-              2016-08-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/netflix/" itemprop="url" rel="index">
-                    <span itemprop="name">netflix</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
+              <a href="/2016/08/17/openresty - 副本/" rel="prev" title="nginx+lua+kafka实现日志统一收集汇总">
+                nginx+lua+kafka实现日志统一收集汇总 <i class="fa fa-chevron-right"></i>
+              </a>
             
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/17/Hystrix 使用与分析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/17/Hystrix 使用与分析/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h3 id="一-为什么需要Hystrix"><a href="#一-为什么需要Hystrix" class="headerlink" title="一:为什么需要Hystrix?"></a>一:为什么需要Hystrix?</h3><p>在大中型分布式系统中，通常系统很多依赖(HTTP,hessian,Netty,Dubbo等)，如下图:<br><img src="http://upload-images.jianshu.io/upload_images/1493878-1a06b4f0f6c8112d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>在高并发访问下,这些依赖的稳定性与否对系统的影响非常大,但是依赖有很多不可控问题:如网络连接缓慢，资源繁忙，暂时不可用，服务脱机等.<br>如下图：QPS为50的依赖 I 出现不可用，但是其他依赖仍然可用.<br><img src="http://upload-images.jianshu.io/upload_images/1493878-b0287878f578f531.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/17/Hystrix 使用与分析/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-    
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -615,6 +467,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/17/rocketmq设计与分析(1)--简介/"
+           data-title="rocketmq设计与分析--简介" data-url="http://yoursite.com/2016/08/17/rocketmq设计与分析(1)--简介/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -634,8 +494,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://i3.itc.cn/20160316/3084_9587fc69_5909_9fac_89e3_c420eda9eafa_1.png"
@@ -689,6 +558,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-rocketmq是什么"><span class="nav-number">1.</span> <span class="nav-text">1.rocketmq是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用场景"><span class="nav-number">2.</span> <span class="nav-text">2.使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-物理部署结构"><span class="nav-number">3.</span> <span class="nav-text">3.物理部署结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-name-server-主要负责存储topic的路由信息"><span class="nav-number">3.1.</span> <span class="nav-text">a. name server 主要负责存储topic的路由信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-broker-主要负责消息存储功能和消息消费功能"><span class="nav-number">3.2.</span> <span class="nav-text">b. broker  主要负责消息存储功能和消息消费功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-name-server与broker"><span class="nav-number">3.3.</span> <span class="nav-text">c. name server与broker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-producer-负责发送消息"><span class="nav-number">3.4.</span> <span class="nav-text">d. producer 负责发送消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e-producer与name-server"><span class="nav-number">3.5.</span> <span class="nav-text">e. producer与name server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f-producer与broker"><span class="nav-number">3.6.</span> <span class="nav-text">f. producer与broker</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-逻辑部署结构"><span class="nav-number">4.</span> <span class="nav-text">4. 逻辑部署结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-producer-group"><span class="nav-number">4.1.</span> <span class="nav-text">a. producer group</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-consumer-group"><span class="nav-number">4.2.</span> <span class="nav-text">b. consumer group</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-使用方式"><span class="nav-number">5.</span> <span class="nav-text">5.使用方式</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -785,6 +665,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
