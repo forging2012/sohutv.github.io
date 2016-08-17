@@ -80,55 +80,25 @@
 
 
 
-<meta name="description" content="1.rocketmq是什么
-高可用，高性能，分布式有序队列
-
-2.使用场景如果业务系统遇到如下词语，可以使用rocketmq
-
-系统解耦
-发布订阅
-分布式队列
-数据延时处理
-分布式事务
-非实时业务削峰
-
-3.物理部署结构">
+<meta name="description" content="1. commitloga. 存储路径默认为$HOME/store/commitlog，可以在broker启动时通过storePathCommitLog设置，存储的文件如下图所示，默认大小为1G：
+b. 数据过来如何存储到这些文件里面呢？消息需要加一些元数据消息加元数据的结构如下：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="rocketmq设计与分析--简介">
-<meta property="og:url" content="http://yoursite.com/2016/08/17/rocketmq设计与分析(1)--简介/index.html">
+<meta property="og:title" content="rocketmq设计与分析(2)--存储层">
+<meta property="og:url" content="http://yoursite.com/2016/08/17/rocketmq设计与分析(2)--简介/index.html">
 <meta property="og:site_name" content="sohutv">
-<meta property="og:description" content="1.rocketmq是什么
-高可用，高性能，分布式有序队列
-
-2.使用场景如果业务系统遇到如下词语，可以使用rocketmq
-
-系统解耦
-发布订阅
-分布式队列
-数据延时处理
-分布式事务
-非实时业务削峰
-
-3.物理部署结构">
-<meta property="og:image" content="http://i3.itc.cn/20160817/3084_c83e8dba_5a42_88ae_7e7d_47c1b18ac0df_1.png">
-<meta property="og:image" content="http://i1.itc.cn/20160817/3084_a4ce2adc_3b8f_0a36_99ad_357d828a24b3_1.png">
-<meta property="og:updated_time" content="2016-08-17T02:06:56.566Z">
+<meta property="og:description" content="1. commitloga. 存储路径默认为$HOME/store/commitlog，可以在broker启动时通过storePathCommitLog设置，存储的文件如下图所示，默认大小为1G：
+b. 数据过来如何存储到这些文件里面呢？消息需要加一些元数据消息加元数据的结构如下：">
+<meta property="og:image" content="http://i2.itc.cn/20160817/3084_1e794575_1473_109a_2f69_3b17074d8462_1.png">
+<meta property="og:image" content="http://i0.itc.cn/20160817/3084_40ced80b_cac7_d17a_d435_41f38e970d2f_1.jpg">
+<meta property="og:image" content="http://i1.itc.cn/20160817/3084_d863e68b_f7cc_0693_9217_aea9c7e41bf1_1.png">
+<meta property="og:image" content="http://i3.itc.cn/20160817/3084_4240c9c3_212a_19e0_8b68_ee989228d962_1.png">
+<meta property="og:image" content="http://i3.itc.cn/20160817/3084_18e4ecd1_3d01_c6fd_e57b_84907c2d8981_1.png">
+<meta property="og:updated_time" content="2016-08-17T02:26:45.126Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="rocketmq设计与分析--简介">
-<meta name="twitter:description" content="1.rocketmq是什么
-高可用，高性能，分布式有序队列
-
-2.使用场景如果业务系统遇到如下词语，可以使用rocketmq
-
-系统解耦
-发布订阅
-分布式队列
-数据延时处理
-分布式事务
-非实时业务削峰
-
-3.物理部署结构">
-<meta name="twitter:image" content="http://i3.itc.cn/20160817/3084_c83e8dba_5a42_88ae_7e7d_47c1b18ac0df_1.png">
+<meta name="twitter:title" content="rocketmq设计与分析(2)--存储层">
+<meta name="twitter:description" content="1. commitloga. 存储路径默认为$HOME/store/commitlog，可以在broker启动时通过storePathCommitLog设置，存储的文件如下图所示，默认大小为1G：
+b. 数据过来如何存储到这些文件里面呢？消息需要加一些元数据消息加元数据的结构如下：">
+<meta name="twitter:image" content="http://i2.itc.cn/20160817/3084_1e794575_1473_109a_2f69_3b17074d8462_1.png">
 
 
 
@@ -146,7 +116,7 @@
   };
 </script>
 
-  <title> rocketmq设计与分析--简介 | sohutv </title>
+  <title> rocketmq设计与分析(2)--存储层 | sohutv </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -276,7 +246,7 @@
             
             
               
-                rocketmq设计与分析--简介
+                rocketmq设计与分析(2)--存储层
               
             
           </h1>
@@ -318,8 +288,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/17/rocketmq设计与分析(1)--简介/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/17/rocketmq设计与分析(1)--简介/" itemprop="commentsCount"></span>
+                <a href="/2016/08/17/rocketmq设计与分析(2)--简介/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/17/rocketmq设计与分析(2)--简介/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -342,74 +312,20 @@
       
 
       
-        <h3 id="1-rocketmq是什么"><a href="#1-rocketmq是什么" class="headerlink" title="1.rocketmq是什么"></a>1.rocketmq是什么</h3><ul>
-<li>高可用，高性能，分布式有序队列</li>
-</ul>
-<h3 id="2-使用场景"><a href="#2-使用场景" class="headerlink" title="2.使用场景"></a>2.使用场景</h3><p>如果业务系统遇到如下词语，可以使用rocketmq</p>
-<ul>
-<li>系统解耦</li>
-<li>发布订阅</li>
-<li>分布式队列</li>
-<li>数据延时处理</li>
-<li>分布式事务</li>
-<li>非实时业务削峰</li>
-</ul>
-<h3 id="3-物理部署结构"><a href="#3-物理部署结构" class="headerlink" title="3.物理部署结构"></a>3.物理部署结构</h3><p><img src="http://i3.itc.cn/20160817/3084_c83e8dba_5a42_88ae_7e7d_47c1b18ac0df_1.png" alt=""></p>
+        <h3 id="1-commitlog"><a href="#1-commitlog" class="headerlink" title="1. commitlog"></a>1. commitlog</h3><p>a. 存储路径默认为$HOME/store/commitlog，可以在broker启动时通过storePathCommitLog设置，存储的文件如下图所示，默认大小为1G：<br><img src="http://i2.itc.cn/20160817/3084_1e794575_1473_109a_2f69_3b17074d8462_1.png" alt=""></p>
+<p>b. 数据过来如何存储到这些文件里面呢？<br>消息需要加一些元数据<br>消息加元数据的结构如下：<br><img src="http://i0.itc.cn/20160817/3084_40ced80b_cac7_d17a_d435_41f38e970d2f_1.jpg" alt=""></p>
 <a id="more"></a>
-<h4 id="a-name-server-主要负责存储topic的路由信息"><a href="#a-name-server-主要负责存储topic的路由信息" class="headerlink" title="a. name server 主要负责存储topic的路由信息"></a>a. name server 主要负责存储topic的路由信息</h4><ul>
-<li>节点之间无数据通信</li>
-<li>无状态</li>
-<li>可以集群部署</li>
-</ul>
-<h4 id="b-broker-主要负责消息存储功能和消息消费功能"><a href="#b-broker-主要负责消息存储功能和消息消费功能" class="headerlink" title="b. broker  主要负责消息存储功能和消息消费功能"></a>b. broker  主要负责消息存储功能和消息消费功能</h4><ul>
-<li>分为master与slave，一个master可以有多个slave，slave同步master的数据</li>
-<li>broker的master之间无数据通信</li>
-<li>mater&lt;-&gt;slave可以集群部署</li>
-</ul>
-<h4 id="c-name-server与broker"><a href="#c-name-server与broker" class="headerlink" title="c. name server与broker"></a>c. name server与broker</h4><ul>
-<li>broker定时向所有的nameserver注册</li>
-<li>namer server定时扫描并移除已死的broker</li>
-</ul>
-<h4 id="d-producer-负责发送消息"><a href="#d-producer-负责发送消息" class="headerlink" title="d. producer 负责发送消息"></a>d. producer 负责发送消息</h4><ul>
-<li>producer无状态，可以集群部署</li>
-</ul>
-<h4 id="e-producer与name-server"><a href="#e-producer与name-server" class="headerlink" title="e. producer与name server"></a>e. producer与name server</h4><ul>
-<li>从nameserver集群中的一个查询topic路由信息</li>
-</ul>
-<h4 id="f-producer与broker"><a href="#f-producer与broker" class="headerlink" title="f. producer与broker"></a>f. producer与broker</h4><ul>
-<li>根据路由信息向broker发送消息</li>
-<li>与broker保持心跳</li>
-</ul>
-<p>g. consumer 服务消费消息</p>
-<ul>
-<li>consumer消费方式有两种，集群消费和广播消费。</li>
-<li>集群消费：所有的消费者平均消费一份消息。</li>
-<li>广播消费：每个消费者各自消费同一份消息</li>
-<li>可以集群部署</li>
-</ul>
-<p>h. consumer与namer server</p>
-<ul>
-<li>从nameserver集群中的一个查询topic路由信息</li>
-</ul>
-<p>i. consumer与broker</p>
-<ul>
-<li>根据路由信息向broker拉取消息</li>
-<li>与broker保持心跳</li>
-</ul>
-<h3 id="4-逻辑部署结构"><a href="#4-逻辑部署结构" class="headerlink" title="4. 逻辑部署结构"></a>4. 逻辑部署结构</h3><p><img src="http://i1.itc.cn/20160817/3084_a4ce2adc_3b8f_0a36_99ad_357d828a24b3_1.png" alt=""></p>
-<h4 id="a-producer-group"><a href="#a-producer-group" class="headerlink" title="a. producer group"></a>a. producer group</h4><ul>
-<li>同一类消息的发送者需要设置为同一个producer group</li>
-<li>同一个producer group可以向多个topic发送消息</li>
-<li>同一个producer group对应的producer可以在同一个jvm中，也可以在不同的jvm中，也可以在不同的机器的jvm中</li>
-</ul>
-<h4 id="b-consumer-group"><a href="#b-consumer-group" class="headerlink" title="b. consumer group"></a>b. consumer group</h4><ul>
-<li>同一类消息的消费者需要设置为同一个consumer group</li>
-<li>同一个consumer group只可以消费同一个topic</li>
-<li>同一个consumer group对应的consumer可以在同一个jvm中，也可以在不同的jvm中，也可以在不同的机器的jvm中</li>
-</ul>
-<h3 id="5-使用方式"><a href="#5-使用方式" class="headerlink" title="5.使用方式"></a>5.使用方式</h3><ul>
-<li>参阅官方示例：<a href="https://github.com/alibaba/RocketMQ/tree/master/rocketmq-example" target="_blank" rel="external">https://github.com/alibaba/RocketMQ/tree/master/rocketmq-example</a></li>
-</ul>
+<p>那么这些数据如何存到commitlog中呢？首先需要解释一下commitlog的名字，名字长度为20位，左边补零，剩余为起始偏移量。解释一下，比如00000000000000000000代表了第一个文件，起始偏移量为0，长度为1073741824=1g<br>当这个文件满了，第二个文件名字为00000000001073741824，起始偏移量为1073741824，长度为默认长度1g,<br>以此类推，第三个文件名字为00000000002147483648，起始偏移量为2147483648<br>消息存储的时候会顺序写入文件，当文件满了，写入下一个文件。</p>
+<p>c. 如何查找消息在那个文件中呢?</p>
+<p>假设我们知道消息的在文件中的起始物理偏移量为1073741827，那么把这些固定大小的commitlog文件看成一个队列，那么上面可以看成有3个文件的队列<br>可以按如下计算就可以得知其在那个文件中：(消息的起始物理偏移量-最早的文件的起始偏移量)/文件大小，即 (1073741827-0)/1073741824=1，可得知该消息在队列中的第二个文件中：<br><img src="http://i1.itc.cn/20160817/3084_d863e68b_f7cc_0693_9217_aea9c7e41bf1_1.png" alt=""></p>
+<p>从文件的那个位置读取呢？1073741827-1073741824=3，即第三个字节开始读取，那么现在需要确定是，消息在文件中的起始偏移量和消息大小为多少？参考consumequeue</p>
+<h3 id="2-consumequeue"><a href="#2-consumequeue" class="headerlink" title="2.consumequeue"></a>2.consumequeue</h3><p>a. 存储路径默认为$HOME/store/consumequeue，可以在broker启动时通过storePathConsumeQueue设置，存储的文件如下图所示，默认大小为600万个字节：<br><img src="http://i3.itc.cn/20160817/3084_4240c9c3_212a_19e0_8b68_ee989228d962_1.png" alt=""></p>
+<p>其存储目录的结构为topic/queue/消息数据文件<br>b. 这些文件中存储的数据是什么？<br>消息的位置：消息的起始物理偏移量physical offset(long 8字节)+消息大小size(int 4字节)+tagsCode(long 8字节)，共20个字节，默认一个文件存储30W条数据<br>这些文件名的命名规则与commitlog一致，所以，这些文件也可以成一个队列</p>
+<p>c. 如何查找消息的位置呢？<br>查找消息的位置需要知道broker的地址，topic，queue，及offset，前面三个信息容易知道，这里的offset代表消息位置的逻辑偏移量，即消息位置的条数，没有消费过默认为0.<br>假如offset=23, 那么需要查找第23条消息的位置，那么消息位置的物理偏移量为23*20=460，定位在那个文件中与消息计算类似,(消息位置起始物理偏移量-最早的文件的起始偏移量)/文件大小<br>即(460-0)/6000000=0,可得知该消息位置数据在第一个文件中，从第一个文件的哪个位置开始读取呢？460-0=460，即第460个自己开始读取，读取20个自己即可获取消息的位置。<br>好，到这里，可以获取到消息的位置，从消息的位置可以知道小的的起始物理偏移量和消息大小，那么可以从commitLog中获取消息的数据了。</p>
+<h3 id="3-存储层的java设计"><a href="#3-存储层的java设计" class="headerlink" title="3.存储层的java设计"></a>3.存储层的java设计</h3><p>存储层包含了两个数据队列，即消息数据队列和消息位置数据队列，而这两个数据的队列的结构是类似的。<br>相关代码级别的分析记录到了csdn上<a href="http://blog.csdn.net/a417930422/article/details/50606732#ConsumeQueue" target="_blank" rel="external">http://blog.csdn.net/a417930422/article/details/50606732#ConsumeQueue</a></p>
+<h3 id="4-为何rocketmq不会因为队列的增加导致waitio的增高？"><a href="#4-为何rocketmq不会因为队列的增加导致waitio的增高？" class="headerlink" title="4.为何rocketmq不会因为队列的增加导致waitio的增高？"></a>4.为何rocketmq不会因为队列的增加导致waitio的增高？</h3><p>所有的消息数据都串行方式刷入一个文件，完全的顺序写，随机读，所谓的队列只是消息在commit log的位置信息</p>
+<h3 id="5-rocketmq写文件采用何种方式？"><a href="#5-rocketmq写文件采用何种方式？" class="headerlink" title="5.rocketmq写文件采用何种方式？"></a>5.rocketmq写文件采用何种方式？</h3><p>采用内存映射文件，额外参考<a href="http://xiaoz5919.iteye.com/blog/2093323https://site.douban.com/161134/widget/articles/8506170/article/18487141/" target="_blank" rel="external">http://xiaoz5919.iteye.com/blog/2093323https://site.douban.com/161134/widget/articles/8506170/article/18487141/</a></p>
+<h3 id="6-最后附一张图来说明其存储情况："><a href="#6-最后附一张图来说明其存储情况：" class="headerlink" title="6.最后附一张图来说明其存储情况："></a>6.最后附一张图来说明其存储情况：</h3><p><img src="http://i3.itc.cn/20160817/3084_18e4ecd1_3d01_c6fd_e57b_84907c2d8981_1.png" alt=""></p>
 
       
     </div>
@@ -469,8 +385,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/17/rocketmq设计与分析(1)--简介/"
-           data-title="rocketmq设计与分析--简介" data-url="http://yoursite.com/2016/08/17/rocketmq设计与分析(1)--简介/">
+      <div class="ds-thread" data-thread-key="2016/08/17/rocketmq设计与分析(2)--简介/"
+           data-title="rocketmq设计与分析(2)--存储层" data-url="http://yoursite.com/2016/08/17/rocketmq设计与分析(2)--简介/">
       </div>
     
   </div>
@@ -515,7 +431,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -565,7 +481,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-rocketmq是什么"><span class="nav-number">1.</span> <span class="nav-text">1.rocketmq是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用场景"><span class="nav-number">2.</span> <span class="nav-text">2.使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-物理部署结构"><span class="nav-number">3.</span> <span class="nav-text">3.物理部署结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-name-server-主要负责存储topic的路由信息"><span class="nav-number">3.1.</span> <span class="nav-text">a. name server 主要负责存储topic的路由信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-broker-主要负责消息存储功能和消息消费功能"><span class="nav-number">3.2.</span> <span class="nav-text">b. broker  主要负责消息存储功能和消息消费功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#c-name-server与broker"><span class="nav-number">3.3.</span> <span class="nav-text">c. name server与broker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#d-producer-负责发送消息"><span class="nav-number">3.4.</span> <span class="nav-text">d. producer 负责发送消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#e-producer与name-server"><span class="nav-number">3.5.</span> <span class="nav-text">e. producer与name server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#f-producer与broker"><span class="nav-number">3.6.</span> <span class="nav-text">f. producer与broker</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-逻辑部署结构"><span class="nav-number">4.</span> <span class="nav-text">4. 逻辑部署结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#a-producer-group"><span class="nav-number">4.1.</span> <span class="nav-text">a. producer group</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#b-consumer-group"><span class="nav-number">4.2.</span> <span class="nav-text">b. consumer group</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-使用方式"><span class="nav-number">5.</span> <span class="nav-text">5.使用方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-commitlog"><span class="nav-number">1.</span> <span class="nav-text">1. commitlog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-consumequeue"><span class="nav-number">2.</span> <span class="nav-text">2.consumequeue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-存储层的java设计"><span class="nav-number">3.</span> <span class="nav-text">3.存储层的java设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-为何rocketmq不会因为队列的增加导致waitio的增高？"><span class="nav-number">4.</span> <span class="nav-text">4.为何rocketmq不会因为队列的增加导致waitio的增高？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-rocketmq写文件采用何种方式？"><span class="nav-number">5.</span> <span class="nav-text">5.rocketmq写文件采用何种方式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-最后附一张图来说明其存储情况："><span class="nav-number">6.</span> <span class="nav-text">6.最后附一张图来说明其存储情况：</span></a></li></ol></div>
             
           </div>
         </section>
